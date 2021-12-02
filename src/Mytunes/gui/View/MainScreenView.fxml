@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Mytunes.gui.Controller.MainScreenController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Mytunes.gui.Controller.MainScreenController">
+   <children>
+      <ImageView fx:id="bckButton" fitHeight="48.0" fitWidth="53.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#bckClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/BackButton.png" />
+         </image></ImageView>
 
+      <ImageView />
+      <ImageView fx:id="playButton" fitHeight="48.0" fitWidth="53.0" layoutX="77.0" layoutY="14.0" onMouseClicked="#playClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/PlayButton.png" />
+         </image></ImageView>
+
+
+      <ImageView fx:id="forwButton" fitHeight="48.0" fitWidth="53.0" layoutX="139.0" layoutY="14.0" onMouseClicked="#forwClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/SkipButton.png" />
+         </image></ImageView>
+   </children>
 </AnchorPane>
