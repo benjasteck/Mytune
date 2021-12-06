@@ -148,5 +148,6 @@
             </Button>
          </children>
       </HBox>
+      <Button fx:id="testbutton" layoutX="371.0" layoutY="88.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="Button" />
    </children>
 </AnchorPane>
