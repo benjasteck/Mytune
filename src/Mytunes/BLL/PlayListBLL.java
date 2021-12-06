@@ -5,9 +5,9 @@ import Mytunes.dal.Interfaces.IPlaylist;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PlayList implements IPlaylist {
+public class PlayListBLL implements IPlaylist {
     @Override
-    public PlayList createPlayList(String name) throws SQLException {
+    public PlayListBLL createPlayList(String name) throws SQLException {
         return null;
     }
 
@@ -17,7 +17,7 @@ public class PlayList implements IPlaylist {
     }
 
     @Override
-    public List<PlayList> getAllPlayLists() throws SQLException {
+    public List<PlayListBLL> getAllPlayLists() throws SQLException {
         return null;
     }
 }

@@ -6,7 +6,7 @@ import jdk.jfr.Category;
 
 import java.sql.SQLException;
 
-public class Categories implements ICategories {
+public class CategoryBLL implements ICategories {
     @Override
     public int createNewCategory(String name) throws SQLException {
         return 0;

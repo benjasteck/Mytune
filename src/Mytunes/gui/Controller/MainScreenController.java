@@ -1,10 +1,13 @@
 package Mytunes.gui.Controller;
 
+import Mytunes.BE.Song;
+import Mytunes.gui.Model.DemoModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,21 +27,26 @@ public class MainScreenController implements Initializable {
     private Button buttonPlayPause;
 
     @FXML
-    private TableColumn<?, ?> tableColumnCat;
+    private TableColumn<Song, String> tableColumnCat;
+
+    //@FXML
+    //private TableColumn<?, ?> tableColumnTime;
 
     @FXML
-    private TableColumn<?, ?> tableColumnTime;
+    private TableColumn<Song, String> tableColumnArtist;
 
     @FXML
-    private TableColumn<?, ?> tableColumnTitle;
+    private TableColumn<Song, String> tableColumnTitle;
 
     @FXML
-    private TableView<?> tableViewSongs;
+    private TableView<Song> tableViewSongs;
 
+    DemoModel demoModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        demoModel = new DemoModel();
         Image imgPlay = new Image ("Mytunes/gui/View/Assets/PlayButton.png");
         Image imgForward = new Image ("Mytunes/gui/View/Assets/SkipButton.png");
         Image imgBack = new Image ("Mytunes/gui/View/Assets/BackButton.png");
@@ -57,6 +65,11 @@ public class MainScreenController implements Initializable {
         buttonForward.setGraphic(viewForward);
         buttonBack.setGraphic(viewBack);
 
+        tableViewSongs.setItems(demoModel.GetSongObservableList());
+        tableColumnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        tableColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
+        tableColumnCat.setCellValueFactory(new PropertyValueFactory<>("category"));
+        //tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
     }
 
 

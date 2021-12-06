@@ -1,6 +1,6 @@
 package Mytunes.dal.DAO;
 
-import Mytunes.BLL.Song;
+import Mytunes.BLL.SongBLL;
 import Mytunes.dal.database.DbConnector;
 
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class SongPlaylistDAO {
     //todo remove songs from playlist by using song id, playlist id and the value
     }
 
-    public List<Song> getAllSongsForGivenPlayList(int playListID, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public List<SongBLL> getAllSongsForGivenPlayList(int playListID, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
             //todo get all song in a playlist defined by its id and return all song.
 
             return null /*allSongsFromSamePlayList*/;

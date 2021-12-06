@@ -10,14 +10,14 @@ import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Song implements ISong {
+public class SongBLL implements ISong {
     @Override
-    public List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLServerException, SQLException {
+    public List<SongBLL> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLServerException, SQLException {
         return null;
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public SongBLL createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         return null;
     }
 

@@ -4,7 +4,7 @@ import Mytunes.dal.Interfaces.IArtists;
 
 import java.sql.SQLException;
 
-public class Artist implements IArtists {
+public class ArtistBLL implements IArtists {
     @Override
     public int createArtist(String name) throws SQLException {
         return 0;
@@ -21,7 +21,7 @@ public class Artist implements IArtists {
     }
 
     @Override
-    public Artist getArtistById(int artistId) throws SQLException {
+    public ArtistBLL getArtistById(int artistId) throws SQLException {
         return null;
     }
 }

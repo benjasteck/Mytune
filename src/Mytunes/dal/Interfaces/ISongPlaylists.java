@@ -1,6 +1,6 @@
 package Mytunes.dal.Interfaces;
 
-import Mytunes.BLL.Song;
+import Mytunes.BLL.SongBLL;
 import Mytunes.dal.DAO.ArtistsDAO;
 import Mytunes.dal.DAO.CategoriesDAO;
 
@@ -12,7 +12,7 @@ public interface ISongPlaylists {
 
     void removeSongFromPlayList(int songId, int playListId, int rank) throws SQLException;
 
-    List<Song> getAllSongsForGivenPlayList(int playListID, ArtistsDAO artistsDAO, CategoriesDAO categoriesDA) throws SQLException;
+    List<SongBLL> getAllSongsForGivenPlayList(int playListID, ArtistsDAO artistsDAO, CategoriesDAO categoriesDA) throws SQLException;
 
     void moveSongUp(int playListId, int songRank) throws SQLException;
 
