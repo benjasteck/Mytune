@@ -1,4 +1,4 @@
-package Mytunes.BE;
+package Mytunes.BLL;
 
 import Mytunes.dal.Interfaces.ICategories;
 import com.microsoft.sqlserver.jdbc.SQLServerException;

@@ -8,8 +8,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -26,23 +24,9 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <ImageView fx:id="bckButton" fitHeight="48.0" fitWidth="53.0" onMouseClicked="#bckClicked" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/BackButton.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="playButton" fitHeight="66.0" fitWidth="60.0" onMouseClicked="#playClicked" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/PlayButton.png" />
-                     </image>
-                  </ImageView>
-            
-                  
-                        <ImageView fx:id="forwButton" fitHeight="48.0" fitWidth="53.0" onMouseClicked="#forwClicked" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/SkipButton.png" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="buttonBack" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+                  <Button fx:id="buttonPlayPause" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" />
+                  <Button fx:id="buttonForward" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -105,12 +89,12 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <TableView prefHeight="500.0" prefWidth="439.0">
+                  <TableView fx:id="tableViewSongs" prefHeight="500.0" prefWidth="439.0">
                     <columns>
-                      <TableColumn prefWidth="141.0" text="C1" />
-                      <TableColumn prefWidth="151.0" text="C2" />
-                        <TableColumn prefWidth="79.0" text="C2" />
-                        <TableColumn prefWidth="67.0" text="C2" />
+                      <TableColumn fx:id="tableColumnTitle" prefWidth="141.0" text="Title" />
+                      <TableColumn fx:id="tableColumnArtist" prefWidth="151.0" text="Artist" />
+                        <TableColumn fx:id="tableColumnCat" prefWidth="79.0" text="Category" />
+                        <TableColumn fx:id="tableColumnTime" prefWidth="67.0" text="Time" />
                     </columns>
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="298.0" spacing="20.0">
@@ -148,6 +132,5 @@
             </Button>
          </children>
       </HBox>
-      <Button fx:id="testbutton" layoutX="371.0" layoutY="88.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="Button" />
    </children>
 </AnchorPane>

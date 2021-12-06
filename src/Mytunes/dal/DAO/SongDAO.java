@@ -1,6 +1,6 @@
 package Mytunes.dal.DAO;
 
-import Mytunes.BE.Song;
+import Mytunes.BLL.Song;
 import Mytunes.dal.database.DbConnector;
 
 import java.nio.file.Path;

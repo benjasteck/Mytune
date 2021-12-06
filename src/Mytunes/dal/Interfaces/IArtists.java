@@ -1,6 +1,6 @@
 package Mytunes.dal.Interfaces;
 
-import Mytunes.BE.Artist;
+import Mytunes.BLL.Artist;
 
 import java.sql.SQLException;
 

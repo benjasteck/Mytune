@@ -1,4 +1,4 @@
-package Mytunes.BE;
+package Mytunes.BLL;
 
 import Mytunes.dal.Interfaces.IPlaylist;
 

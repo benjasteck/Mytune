@@ -1,6 +1,6 @@
 package Mytunes.dal.Interfaces;
 
-import Mytunes.BE.PlayList;
+import Mytunes.BLL.PlayList;
 
 import java.sql.SQLException;
 import java.util.List;
