@@ -1,5 +1,7 @@
 package Mytunes.dal.Interfaces;
 
+import Mytunes.BE.Artist;
+
 import java.sql.SQLException;
 
 public interface IArtists {

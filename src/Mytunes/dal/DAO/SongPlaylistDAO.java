@@ -1,5 +1,6 @@
 package Mytunes.dal.DAO;
 
+import Mytunes.BE.Song;
 import Mytunes.dal.database.DbConnector;
 
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class SongPlaylistDAO {
     public List<Song> getAllSongsForGivenPlayList(int playListID, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
             //todo get all song in a playlist defined by its id and return all song.
 
-            return allSongsFromSamePlayList;
+            return null /*allSongsFromSamePlayList*/;
     }
 
     public void moveSongDown(int playListId, int songRank) throws SQLException {
@@ -47,6 +48,6 @@ public class SongPlaylistDAO {
 
     List<Integer> getValueSongInPlayList(int songId, int playListId) throws SQLException {
             //todo return all values in a given playlist defined by id and connect them to a song id
-    return allvalues;
+    return null /*allvalues*/;
     }
 }

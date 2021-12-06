@@ -19,18 +19,10 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Image img = new Image("Mytunes/gui/View/Assets/PlayButton.png");
+        /*Image img = new Image("Mytunes/gui/View/Assets/PlayButton.png");
         ImageView view = new ImageView(img);
-        testbutton.setGraphic(view);
+        testbutton.setGraphic(view);*/
     }
 
-    public void bckClicked(MouseEvent mouseEvent) {
-    }
-
-    public void playClicked(MouseEvent mouseEvent) {
-    }
-
-    public void forwClicked(MouseEvent mouseEvent) {
-    }
 
 }
