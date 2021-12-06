@@ -94,6 +94,7 @@
                       <TableColumn fx:id="tableColumnTitle" prefWidth="141.0" text="Title" />
                       <TableColumn fx:id="tableColumnArtist" prefWidth="151.0" text="Artist" />
                         <TableColumn fx:id="tableColumnCat" prefWidth="79.0" text="Category" />
+                        <TableColumn fx:id="tableColumnTime" prefWidth="75.0" text="Time" />
                     </columns>
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="298.0" spacing="20.0">

@@ -29,8 +29,8 @@ public class MainScreenController implements Initializable {
     @FXML
     private TableColumn<Song, String> tableColumnCat;
 
-    //@FXML
-    //private TableColumn<?, ?> tableColumnTime;
+    @FXML
+    private TableColumn<Song, Integer> tableColumnTime;
 
     @FXML
     private TableColumn<Song, String> tableColumnArtist;
@@ -47,6 +47,16 @@ public class MainScreenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         demoModel = new DemoModel();
+        setButtons();
+
+        tableColumnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        tableColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
+        tableColumnCat.setCellValueFactory(new PropertyValueFactory<>("category"));
+        tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        tableViewSongs.setItems(demoModel.GetSongObservableList());
+    }
+
+    private void setButtons(){
         Image imgPlay = new Image ("Mytunes/gui/View/Assets/PlayButton.png");
         Image imgForward = new Image ("Mytunes/gui/View/Assets/SkipButton.png");
         Image imgBack = new Image ("Mytunes/gui/View/Assets/BackButton.png");
@@ -60,17 +70,9 @@ public class MainScreenController implements Initializable {
         viewForward.setFitWidth(50);
         viewBack.setFitHeight(50);
         viewBack.setFitWidth(50);
-
         buttonPlayPause.setGraphic(viewPlay);
         buttonForward.setGraphic(viewForward);
         buttonBack.setGraphic(viewBack);
-
-        tableViewSongs.setItems(demoModel.GetSongObservableList());
-        tableColumnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        tableColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
-        tableColumnCat.setCellValueFactory(new PropertyValueFactory<>("category"));
-        //tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
     }
-
 
 }
