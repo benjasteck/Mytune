@@ -1,9 +1,11 @@
 package Mytunes.dal.DAO;
 
+import Mytunes.BLL.SongBLL;
 import Mytunes.dal.database.DbConnector;
 
 import java.nio.file.Path;
 import java.sql.SQLException;
+import java.util.List;
 
 public class SongDAO {
     DbConnector databaseConnector;
@@ -12,14 +14,14 @@ public class SongDAO {
         databaseConnector = new DbConnector();
     }
 
-    public List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public List<SongBLL> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         //todo go throu all song and return allsongs consisting of id, title, artist, category, time and filepath
-        return allSong;
+        return null;
     }
 
-    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public SongBLL createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         //todo set all parameters here and and return a sung consisting of id, title, artist, categorym time and filepath
-        return song;
+        return null;
     }
 
     public void deleteSong(int id, SongPlaylistDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {

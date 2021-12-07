@@ -1,5 +1,7 @@
 package Mytunes.dal.Interfaces;
 
+import Mytunes.BLL.ArtistBLL;
+
 import java.sql.SQLException;
 
 public interface IArtists {
@@ -9,5 +11,5 @@ public interface IArtists {
 
     void updateArtist(int id, String name) throws SQLException;
 
-    Artist getArtistById(int artistId) throws SQLException;
+    ArtistBLL getArtistById(int artistId) throws SQLException;
 }
