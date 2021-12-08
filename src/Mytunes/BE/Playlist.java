@@ -1,16 +1,14 @@
 package Mytunes.BE;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {
-    String name;
-    List<Song> songList;
+    private String name;
+    private List<Song> songList;
 
     public Playlist (String name, List<Song> songList){
         this.name = name;
         this.songList = songList;
-        //return Playlist(name);
     }
     public Playlist (String name) {
         this.name = name;
@@ -30,7 +28,8 @@ public class Playlist {
 
     public void setName(String name) {
         this.name = name;
-    }  public void addSong(Song m){
+    }
+    public void addSong(Song m){
         this.songList.add(m);
     }
     public void removeSong(Song s){
@@ -39,5 +38,12 @@ public class Playlist {
     public int getNumberOfSongs()
     {
         return songList.size();
+    }
+    public String getTotalTime(){
+        int time = 0;
+        for (Song s : songList){
+            time = time + s.getDuration();
+        }
+        return String.format((time / 60) + ":" + (time % 60));
     }
 }

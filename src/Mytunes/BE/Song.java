@@ -6,7 +6,7 @@ public class Song {
     private String title;
     private String artist;
     private Category category;
-    //private String filePath;
+    private String filePath;
 
     private Integer seconds;
 
@@ -55,6 +55,22 @@ public class Song {
 
     public String getArtist() {
         return artist;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public Integer getSeconds() {
+        return seconds;
+    }
+
+    public void setSeconds(Integer seconds) {
+        this.seconds = seconds;
     }
 
     public void setArtist(String artist) {
