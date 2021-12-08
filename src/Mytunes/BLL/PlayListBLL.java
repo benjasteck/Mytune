@@ -35,7 +35,7 @@ public class PlayListBLL {
     }
 
     private void SetUpTestPlaylist (){
-        playlistListDemo.add(new Playlist("testPlaylist",));
+        playlistListDemo.add(new Playlist("testPlaylist"));
 
     }
 

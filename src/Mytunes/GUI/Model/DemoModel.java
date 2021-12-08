@@ -9,7 +9,7 @@ public class DemoModel {
 
     public ObservableList<Song> songObservableList;
 
-    public ObservableList<Song> GetSongObservableList() {
+    public ObservableList<Song> getSongObservableList() {
         songObservableList = FXCollections.observableArrayList();
         songObservableList.add(new Song("Wilder and Mind", "Mumford&Sons", new Category("Rock"), 5, 30));
         songObservableList.add(new Song("Awake My Soul", "Mumford&Sons", new Category("Rock"),4, 30));

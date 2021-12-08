@@ -12,6 +12,9 @@ public class Playlist {
         this.songList = songList;
         //return Playlist(name);
     }
+    public Playlist (String name) {
+        this.name = name;
+    }
 
     public List<Song> getSongList() {
         return songList;

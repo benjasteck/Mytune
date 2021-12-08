@@ -1,5 +1,6 @@
 package Mytunes.BLL;
 
+import Mytunes.BE.Category;
 import Mytunes.BE.Song;
 import Mytunes.DAL.DAO.ArtistsDAO;
 import Mytunes.DAL.DAO.CategoriesDAO;
@@ -33,10 +34,10 @@ public class SongBLL  {
     }
 
     private void SetUpTestSongs (){
-        songListTest.add(new Song("Wilder and Mind", "Mumford&Sons", "Rock", 5));
-        songListTest.add(new Song("Awake My Soul", "Mumford&Sons", "Rock",4));
-        songListTest.add(new Song("The Cave", "Mumford&Sons", "Rock",3));
-        songListTest.add(new Song("Little Lion Man", "Mumford&Sons", "Rock",5));
+        songListTest.add(new Song("Wilder and Mind", "Mumford&Sons", new Category("Rock"), 5));
+        songListTest.add(new Song("Awake My Soul", "Mumford&Sons", new Category("Rock"),4));
+        songListTest.add(new Song("The Cave", "Mumford&Sons", new Category("Rock"),3));
+        songListTest.add(new Song("Little Lion Man", "Mumford&Sons",new Category("Rock"),5));
     }
 
     public List<Song> getAllSongs() {

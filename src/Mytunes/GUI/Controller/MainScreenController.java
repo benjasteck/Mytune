@@ -64,8 +64,8 @@ public class MainScreenController implements Initializable {
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         tableColumnCat.setCellValueFactory(new PropertyValueFactory<>("category"));
-        tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-        tableViewSongs.setItems(demoModel.GetAllSongs());
+        tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("timeToString"));
+        tableViewSongs.setItems(demoModel.getSongObservableList());
     }
 
     private void setButtons(){
