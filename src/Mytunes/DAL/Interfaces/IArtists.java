@@ -1,4 +1,4 @@
-package Mytunes.dal.Interfaces;
+package Mytunes.DAL.Interfaces;
 
 import Mytunes.BLL.ArtistBLL;
 

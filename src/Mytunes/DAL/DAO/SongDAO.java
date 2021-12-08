@@ -1,25 +1,29 @@
-package Mytunes.dal.DAO;
+package Mytunes.DAL.DAO;
 
+import Mytunes.BE.Song;
 import Mytunes.BLL.SongBLL;
-import Mytunes.dal.database.DbConnector;
+import Mytunes.DAL.database.DbConnector;
 
 import java.nio.file.Path;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class SongDAO {
+public class SongDAO<list> {
     DbConnector databaseConnector;
 
     public SongDAO() {
         databaseConnector = new DbConnector();
     }
 
-    public List<SongBLL> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public List<Song> AllSongsList = new ArrayList<Song>(); // this List should contain ALL the songs ever created
+
+    public List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         //todo go throu all song and return allsongs consisting of id, title, artist, category, time and filepath
         return null;
     }
 
-    public SongBLL createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         //todo set all parameters here and and return a sung consisting of id, title, artist, categorym time and filepath
         return null;
     }

@@ -69,4 +69,8 @@ public class Song {
         this.category = category;
     }
 
+    @Override
+    public String toString() {
+        return "Song{" + "title='" + title + '\'' + ", artist='" + artist + '\'' + '}';
+    }
 }

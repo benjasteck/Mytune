@@ -1,4 +1,4 @@
-package Mytunes.gui.Model;
+package Mytunes.GUI.Model;
 
 import Mytunes.BE.Category;
 import Mytunes.BE.Song;

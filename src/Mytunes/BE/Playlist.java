@@ -1,23 +1,39 @@
 package Mytunes.BE;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {
-    private String name;
-    private ArrayList<Song> songList = new ArrayList<>();
+    String name;
+    List<Song> songList;
 
-    public void addSong(Song m){
+    public Playlist (String name, List<Song> songList){
+        this.name = name;
+        this.songList = songList;
+        //return Playlist(name);
+    }
+
+    public List<Song> getSongList() {
+        return songList;
+    }
+
+    public void setSongList(List<Song> songList) {
+        this.songList = songList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }  public void addSong(Song m){
         this.songList.add(m);
     }
     public void removeSong(Song s){
         this.songList.remove(s);
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getSongs()
+    public int getNumberOfSongs()
     {
         return songList.size();
     }

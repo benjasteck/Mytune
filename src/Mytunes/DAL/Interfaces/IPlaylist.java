@@ -1,4 +1,4 @@
-package Mytunes.dal.Interfaces;
+package Mytunes.DAL.Interfaces;
 
 import Mytunes.BLL.PlayListBLL;
 
@@ -11,4 +11,6 @@ public interface IPlaylist {
     void deletePlayList(String name) throws SQLException;
 
     List<PlayListBLL> getAllPlayLists() throws SQLException;
+
+    void getAllSongsFromPlaylist()throws SQLException; // Matej made this method
 }
