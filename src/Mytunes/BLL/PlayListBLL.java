@@ -1,28 +1,42 @@
 package Mytunes.BLL;
 
+import Mytunes.BE.Playlist;
+import Mytunes.BE.Song;
+import Mytunes.DAL.DAO.PlaylistDAO;
 import Mytunes.DAL.Interfaces.IPlaylist;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class PlayListBLL implements IPlaylist {
-    @Override
-    public PlayListBLL createPlayList(String name) throws SQLException {
+public class PlayListBLL {
+    List<Playlist> playlistListDemo;
+    PlaylistDAO database;
+
+    public PlayListBLL createPlayList(String name)  {
         return null;
     }
 
-    @Override
-    public void deletePlayList(String name) throws SQLException {
+    public void deletePlayList(String name) {
 
     }
 
-    @Override
-    public List<PlayListBLL> getAllPlayLists() throws SQLException {
-        return null;
+    public List<Playlist> getAllPlayLists() {
+        return playlistListDemo;
     }
 
-    @Override
-    public void getAllSongsFromPlaylist() throws SQLException {
+    public void getAllSongsFromPlaylist() {
 
     }
+
+    public PlayListBLL (){
+        playlistListDemo = new ArrayList<>();
+        SetUpTestPlaylist();
+    }
+
+    private void SetUpTestPlaylist (){
+        playlistListDemo.add(new Playlist("testPlaylist",));
+
+    }
+
 }

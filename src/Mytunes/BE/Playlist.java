@@ -5,10 +5,20 @@ import java.util.List;
 
 public class Playlist {
     String name;
+    List<Song> songList;
 
-    public List<Song> Playlist (String name){
+    public Playlist (String name, List<Song> songList){
         this.name = name;
-        return Playlist(name);
+        this.songList = songList;
+        //return Playlist(name);
+    }
+
+    public List<Song> getSongList() {
+        return songList;
+    }
+
+    public void setSongList(List<Song> songList) {
+        this.songList = songList;
     }
 
     public String getName() {
