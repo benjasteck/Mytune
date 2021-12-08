@@ -1,22 +1,37 @@
 package Mytunes.GUI.Model;
 
-import Mytunes.BE.Category;
+import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
+import Mytunes.BLL.PlayListBLL;
+import Mytunes.BLL.SongBLL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DemoModel {
 
+    private SongBLL songmanager;
+    private PlayListBLL playlistmanager;
     public ObservableList<Song> songObservableList;
+    public ObservableList<Playlist> playlistObservableList;
 
-    public ObservableList<Song> getSongObservableList() {
+
+    public DemoModel(){
         songObservableList = FXCollections.observableArrayList();
-        songObservableList.add(new Song("Wilder and Mind", "Mumford&Sons", new Category("Rock"), 339));
-        songObservableList.add(new Song("Awake My Soul", "Mumford&Sons", new Category("Rock"),254));
-        songObservableList.add(new Song("The Cave", "Mumford&Sons", new Category("Rock"),276));
-        songObservableList.add(new Song("Little Lion Man", "Mumford&Sons", new Category("Rock"),218));
-        songObservableList.add(new Song("Bobobo opening", "GOD", new Category("Rock"),59));
+        playlistObservableList = FXCollections.observableArrayList();
+        songmanager = new SongBLL();
+        playlistmanager = new PlayListBLL();
+        songObservableList.addAll(songmanager.getAllSongs());
+        playlistObservableList.addAll(playlistmanager.getAllPlayLists());
+    } // this method gets all the songs from SongBLL and add them to observable list for GUI
+        // this method also gets all the playlist from PlaylistBLL and add them to observable list for GUI
+
+    public ObservableList<Song> GetAllSongs() {
         return songObservableList;
-        // this TEST method makes demo observable list for Controller
     }
+
+    public ObservableList<Playlist> getAllPlaylists(){
+        return playlistObservableList;
+    }
+
+
 }

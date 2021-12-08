@@ -17,31 +17,33 @@ import java.util.List;
 public class SongBLL  {
 
     SongDAO songdatabase;
-    public List<Song> songListTest;
+    public List<Song> songListTest; // just test list
 
     /*public Song createSong (Song song){
         return songdatabase.createSong(song);
-    } // this method should create a new song - it is connected to GUI
+    } // this method should create a new song
 */  // TODO need to alter this
-
-    public void deleteSong(String name){
-
-    }
 
     public SongBLL (){
         songListTest = new ArrayList<>();
         SetUpTestSongs();
-    }
+    } // temporarily like this
+
+    public void deleteSong(String name){
+        songListTest.removeIf(song -> song.getTitle().equals(name));
+    } // this method remove the song by name
+
+
 
     private void SetUpTestSongs (){
-        songListTest.add(new Song("Wilder and Mind", "Mumford&Sons", new Category("Rock"), 5));
-        songListTest.add(new Song("Awake My Soul", "Mumford&Sons", new Category("Rock"),4));
-        songListTest.add(new Song("The Cave", "Mumford&Sons", new Category("Rock"),3));
-        songListTest.add(new Song("Little Lion Man", "Mumford&Sons",new Category("Rock"),5));
-    }
+        songListTest.add(new Song("Wilder and Mind", "Mumford&Sons", new Category("Rock"), 222));
+        songListTest.add(new Song("Awake My Soul", "Mumford&Sons", new Category("Rock"),311));
+        songListTest.add(new Song("The Cave", "Mumford&Sons", new Category("Rock"),237));
+        songListTest.add(new Song("Little Lion Man", "Mumford&Sons",new Category("Rock"),430));
+    } // This is just test database - later this will be deleted
 
     public List<Song> getAllSongs() {
         //return songdatabase.getAllSongs();
-        return songListTest;
+        return songListTest; // temporarily like this
     }
 }

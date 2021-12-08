@@ -35,7 +35,7 @@ public class Playlist {
     public void removeSong(Song s){
         this.songList.remove(s);
     }
-    public int getNumberOfSongs()
+    public Integer getNumberOfSongs()
     {
         return songList.size();
     }

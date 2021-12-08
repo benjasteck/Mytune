@@ -1,5 +1,6 @@
 package Mytunes.BLL;
 
+import Mytunes.BE.Category;
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
 import Mytunes.DAL.DAO.PlaylistDAO;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayListBLL {
-    List<Playlist> playlistListDemo;
+    List<Playlist> playlistListDemo; // this is test list for playlists
     PlaylistDAO database;
 
     public PlayListBLL createPlayList(String name)  {
@@ -32,11 +33,20 @@ public class PlayListBLL {
     public PlayListBLL (){
         playlistListDemo = new ArrayList<>();
         SetUpTestPlaylist();
-    }
+    } // temporarily like this
 
     private void SetUpTestPlaylist (){
-        playlistListDemo.add(new Playlist("testPlaylist"));
-
-    }
+       /* Playlist playlist1;
+        playlistListDemo.add(playlist1 = new Playlist("testPlaylist1"));
+        playlist1.addSong(new Song("testing", "no idea", new Category("rap"), 511));
+        Playlist playlist2;
+        playlistListDemo.add(playlist2 =new Playlist("testPlaylist2"));
+        playlist1.addSong(new Song("testing", "no idea", new Category("rap"), 511));
+        playlist2.addSong(new Song("testing", "no idea", new Category("rap"), 511));
+        Playlist playlist3;
+        playlistListDemo.add(playlist3 = new Playlist("testPlaylist3"));
+        playlist3.addSong(new Song("testing", "no idea", new Category("rap"), 511));
+        playlist3.addSong(new Song("testing", "no idea", new Category("rap"), 511));*/
+    } // TODO this does not work at all
 
 }

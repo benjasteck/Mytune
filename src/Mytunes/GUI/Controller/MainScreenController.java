@@ -51,7 +51,7 @@ public class MainScreenController implements Initializable {
     private TableColumn<Playlist, String> tableColumnName;
 
     @FXML
-    private TableColumn<?, ?> tableColumnSongs;
+    private TableColumn<Playlist, Integer> tableColumnSongs;
 
     DemoModel demoModel;
 
@@ -65,7 +65,11 @@ public class MainScreenController implements Initializable {
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         tableColumnCat.setCellValueFactory(new PropertyValueFactory<>("category"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("timeToString"));
-        tableViewSongs.setItems(demoModel.getSongObservableList());
+        tableViewSongs.setItems(demoModel.GetAllSongs()); // setting up tableview for All songs (right one)
+
+        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
+        tableViewPlaylist.setItems(demoModel.getAllPlaylists());
     }
 
     private void setButtons(){
