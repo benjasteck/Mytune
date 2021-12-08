@@ -7,37 +7,25 @@ public class Song {
     private String artist;
     private String category;
     //private String filePath;
-
+    private Integer time;
     private Integer minute;
     private Integer second;
 
-    public Song(String title, String artist, String category, Integer minute, Integer second, ){
-        this.minute = (int)((System.currentTimeMillis() / 1000) /60 ) % 60;
-        this.second =(int)(System.currentTimeMillis() /1000) % 60;
+    public Song(String title, String artist, String category, Integer time){
+        this.time = time;
         this.artist = artist;
         this.title = title;
         this.category = category;
+
+        //this.minute = (int)((System.currentTimeMillis() / 1000) /60 ) % 60;
+        //this.second =(int)(System.currentTimeMillis() /1000) % 60;
     }
 
-    public int getMinute() {
-        return minute;
-    }
+    public Integer getTime() { return time; }
 
-    public void setMinute(int minute) {
-        this.minute = minute;
-    }
+    public void setTime(Integer time) { this.time = time; }
 
-    public int getSecond() {
-        return second;
-    }
-
-    public void setSecond(int second) {
-        this.second = second;
-    }
-
-    public void TimeToString(){
-        String.format(getMinute()+":"+ getSecond());
-    }
+    //public void TimeToString(){ String.format(getMinute()+":"+ getSecond()); }
 
     public String getTitle() {
         return title;
