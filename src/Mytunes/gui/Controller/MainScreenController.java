@@ -52,7 +52,7 @@ public class MainScreenController implements Initializable {
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         tableColumnCat.setCellValueFactory(new PropertyValueFactory<>("category"));
-        tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("timeToString"));
         tableViewSongs.setItems(demoModel.GetSongObservableList());
     }
 

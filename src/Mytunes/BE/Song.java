@@ -5,27 +5,45 @@ package Mytunes.BE;
 public class Song {
     private String title;
     private String artist;
-    private String category;
+    private Category category;
     //private String filePath;
-    private Integer time;
-    private Integer minute;
-    private Integer second;
 
-    public Song(String title, String artist, String category, Integer time){
-        this.time = time;
+    private Integer seconds;
+
+    public Song(String title, String artist, Category category, Integer minute, Integer seconds){
+        this.seconds =(minute * 60) + seconds;
         this.artist = artist;
         this.title = title;
         this.category = category;
-
-        //this.minute = (int)((System.currentTimeMillis() / 1000) /60 ) % 60;
-        //this.second =(int)(System.currentTimeMillis() /1000) % 60;
     }
 
-    public Integer getTime() { return time; }
+    public Song(String title, String artist, Category category, Integer duration){
+        this.seconds = duration;
+        this.artist = artist;
+        this.title = title;
+        this.category = category;
+    }
 
-    public void setTime(Integer time) { this.time = time; }
+    public int getMinute() {
 
-    //public void TimeToString(){ String.format(getMinute()+":"+ getSecond()); }
+        return this.seconds / 60;
+    }
+
+
+    public int getSecond() {
+        return this.seconds % 60;
+    }
+    public int getDuration(){
+        return this.seconds;
+    }
+
+    public void setDuration(int second) {
+        this.seconds = second;
+    }
+
+    public String getTimeToString(){
+        return String.format(getMinute()+":"+ getSecond());
+    }
 
     public String getTitle() {
         return title;
@@ -43,11 +61,11 @@ public class Song {
         this.artist = artist;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
