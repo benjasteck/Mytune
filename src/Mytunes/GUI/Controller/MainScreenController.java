@@ -1,7 +1,8 @@
-package Mytunes.gui.Controller;
+package Mytunes.GUI.Controller;
 
+import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
-import Mytunes.gui.Model.DemoModel;
+import Mytunes.GUI.Model.DemoModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +41,18 @@ public class MainScreenController implements Initializable {
     @FXML
     private TableView<Song> tableViewSongs;
 
+    @FXML
+    private TableView<Playlist> tableViewPlaylist;
+
+    @FXML
+    private TableColumn<?, ?> tableColumnTimeP;
+
+    @FXML
+    private TableColumn<Playlist, String> tableColumnName;
+
+    @FXML
+    private TableColumn<?, ?> tableColumnSongs;
+
     DemoModel demoModel;
 
     @Override
@@ -53,13 +65,13 @@ public class MainScreenController implements Initializable {
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         tableColumnCat.setCellValueFactory(new PropertyValueFactory<>("category"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-        tableViewSongs.setItems(demoModel.GetSongObservableList());
+        tableViewSongs.setItems(demoModel.GetAllSongs());
     }
 
     private void setButtons(){
-        Image imgPlay = new Image ("Mytunes/gui/View/Assets/PlayButton.png");
-        Image imgForward = new Image ("Mytunes/gui/View/Assets/SkipButton.png");
-        Image imgBack = new Image ("Mytunes/gui/View/Assets/BackButton.png");
+        Image imgPlay = new Image ("Mytunes/GUI/View/Assets/PlayButton.png");
+        Image imgForward = new Image ("Mytunes/GUI/View/Assets/SkipButton.png");
+        Image imgBack = new Image ("Mytunes/GUI/View/Assets/BackButton.png");
 
         ImageView viewPlay = new ImageView(imgPlay);
         ImageView viewForward = new ImageView(imgForward);

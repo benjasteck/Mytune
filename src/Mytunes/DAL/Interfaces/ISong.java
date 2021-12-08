@@ -1,9 +1,9 @@
-package Mytunes.dal.Interfaces;
+package Mytunes.DAL.Interfaces;
 
 import Mytunes.BLL.SongBLL;
-import Mytunes.dal.DAO.ArtistsDAO;
-import Mytunes.dal.DAO.CategoriesDAO;
-import Mytunes.dal.DAO.SongPlaylistDAO;
+import Mytunes.DAL.DAO.ArtistsDAO;
+import Mytunes.DAL.DAO.CategoriesDAO;
+import Mytunes.DAL.DAO.SongPlaylistDAO;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.nio.file.Path;

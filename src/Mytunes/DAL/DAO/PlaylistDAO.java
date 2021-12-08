@@ -1,6 +1,6 @@
-package Mytunes.dal.DAO;
+package Mytunes.DAL.DAO;
 
-import Mytunes.dal.database.DbConnector;
+import Mytunes.DAL.database.DbConnector;
 
 import java.sql.SQLException;
 

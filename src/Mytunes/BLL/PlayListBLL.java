@@ -1,6 +1,6 @@
 package Mytunes.BLL;
 
-import Mytunes.dal.Interfaces.IPlaylist;
+import Mytunes.DAL.Interfaces.IPlaylist;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -19,5 +19,10 @@ public class PlayListBLL implements IPlaylist {
     @Override
     public List<PlayListBLL> getAllPlayLists() throws SQLException {
         return null;
+    }
+
+    @Override
+    public void getAllSongsFromPlaylist() throws SQLException {
+
     }
 }

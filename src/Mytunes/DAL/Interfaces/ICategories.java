@@ -1,4 +1,4 @@
-package Mytunes.dal.Interfaces;
+package Mytunes.DAL.Interfaces;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import jdk.jfr.Category;

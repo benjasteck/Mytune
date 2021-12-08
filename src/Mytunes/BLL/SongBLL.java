@@ -1,38 +1,46 @@
 package Mytunes.BLL;
 
-import Mytunes.dal.DAO.ArtistsDAO;
-import Mytunes.dal.DAO.CategoriesDAO;
-import Mytunes.dal.DAO.SongPlaylistDAO;
-import Mytunes.dal.Interfaces.ISong;
+import Mytunes.BE.Song;
+import Mytunes.DAL.DAO.ArtistsDAO;
+import Mytunes.DAL.DAO.CategoriesDAO;
+import Mytunes.DAL.DAO.SongDAO;
+import Mytunes.DAL.DAO.SongPlaylistDAO;
+import Mytunes.DAL.Interfaces.ISong;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.nio.file.Path;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class SongBLL implements ISong {
-    @Override
-    public List<SongBLL> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLServerException, SQLException {
-        return null;
-    }
+public class SongBLL  {
 
-    @Override
-    public SongBLL createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-        return null;
-    }
+    SongDAO songdatabase;
+    public List<Song> songListTest;
 
-    @Override
-    public void deleteSong(int id, SongPlaylistDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    /*public Song createSong (Song song){
+        return songdatabase.createSong(song);
+    } // this method should create a new song - it is connected to GUI
+*/  // TODO need to alter this
+
+    public void deleteSong(String name){
 
     }
 
-    @Override
-    public void updateSong(String title, int id, String newArtist, String newCategory, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-
+    public SongBLL (){
+        songListTest = new ArrayList<>();
+        SetUpTestSongs();
     }
 
-    @Override
-    public int getSongTime(Path filePath) {
-        return 0;
+    private void SetUpTestSongs (){
+        songListTest.add(new Song("Wilder and Mind", "Mumford&Sons", "Rock", 5));
+        songListTest.add(new Song("Awake My Soul", "Mumford&Sons", "Rock",4));
+        songListTest.add(new Song("The Cave", "Mumford&Sons", "Rock",3));
+        songListTest.add(new Song("Little Lion Man", "Mumford&Sons", "Rock",5));
+    }
+
+    public List<Song> getAllSongs() {
+        //return songdatabase.getAllSongs();
+        return songListTest;
     }
 }

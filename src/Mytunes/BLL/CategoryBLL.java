@@ -1,6 +1,6 @@
 package Mytunes.BLL;
 
-import Mytunes.dal.Interfaces.ICategories;
+import Mytunes.DAL.Interfaces.ICategories;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import jdk.jfr.Category;
 
