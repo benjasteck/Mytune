@@ -1,7 +1,4 @@
-package Mytunes.be;
+package Mytunes.BE;
 
 public class Playlist {
-    public PlayList(int id, String name) {
-
-    }
 }

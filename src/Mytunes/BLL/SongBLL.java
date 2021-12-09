@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class SongBLL implements ISong {
+    public SongBLL(int id, String artist, String title, String time, String filepath, String category) {
+    }
+
     @Override
     public List<SongBLL> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLServerException, SQLException {
         return null;

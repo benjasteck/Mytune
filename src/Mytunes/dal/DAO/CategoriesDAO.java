@@ -2,6 +2,9 @@ package Mytunes.dal.DAO;
 
 import Mytunes.dal.database.DbConnector;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CategoriesDAO {
@@ -21,9 +24,24 @@ public class CategoriesDAO {
     //todo delete category from sql coloumn
     }
 
-    public int getCategoryById(int categoryId) throws SQLException {
+    public Mytunes.BLL.CategoryBLL getCategoryById(int categoryId) throws SQLException {
     //todo get a category by using id and return that.
-    return 1;
+        //todo get the artist that matches the id and return the artist
+        String sql = "SELECT FROM category WHERE Id=?";
+        Mytunes.BLL.CategoryBLL category = null;
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, categoryId);
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("Id");
+                int categoryid = resultSet.getInt("categoryId");
+                String name = resultSet.getString("name");
+                category = new Mytunes.BLL.CategoryBLL(id, categoryid, name);
+            }
+
+        }
+    return category;
     }
 
 

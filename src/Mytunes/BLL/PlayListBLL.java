@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PlayListBLL implements IPlaylist {
+    public PlayListBLL(int id, String name) {
+    }
+
     @Override
     public PlayListBLL createPlayList(String name) throws SQLException {
         return null;
