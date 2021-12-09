@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Mytunes.GUI.Controller.MainScreenController">
+<AnchorPane prefHeight="672.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Mytunes.GUI.Controller.MainScreenController">
    <children>
-      <Label alignment="CENTER" layoutX="463.0" layoutY="82.0" prefHeight="31.0" prefWidth="258.0" text="Music playing">
+      <Label alignment="CENTER" layoutX="463.0" layoutY="34.0" prefHeight="31.0" prefWidth="258.0" text="Music playing">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <VBox layoutX="55.0" layoutY="50.0" prefHeight="136.0" prefWidth="266.0">
+      <VBox layoutX="35.0" layoutY="2.0" prefHeight="136.0" prefWidth="266.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
@@ -35,7 +35,7 @@
             <Slider prefHeight="24.0" prefWidth="166.0" />
          </children>
       </VBox>
-      <HBox layoutX="24.0" layoutY="194.0" prefHeight="580.0" prefWidth="1150.0" spacing="20.0">
+      <HBox layoutX="25.0" layoutY="127.0" prefHeight="554.0" prefWidth="1150.0" spacing="20.0">
          <children>
             <VBox prefHeight="566.0" prefWidth="298.0">
                <children>
@@ -44,7 +44,7 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableViewPlaylist" prefHeight="496.0" prefWidth="298.0">
+                  <TableView fx:id="tableViewPlaylist" prefHeight="461.0" prefWidth="298.0">
                     <columns>
                       <TableColumn fx:id="tableColumnName" prefWidth="147.0" text="Name" />
                       <TableColumn fx:id="tableColumnSongs" prefWidth="53.0" text="Songs" />
@@ -53,7 +53,7 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="298.0" spacing="30.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="New..." />
+                        <Button fx:id="buttonNewPlaylist" mnemonicParsing="false" onAction="#toNewPlaylist" prefHeight="30.0" prefWidth="70.0" text="New..." />
                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Edit..." />
                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Delete" />
                      </children>
@@ -67,7 +67,7 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <ListView prefHeight="496.0" prefWidth="314.0" />
+                  <ListView prefHeight="460.0" prefWidth="266.0" />
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="298.0" spacing="20.0">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="Up" />
@@ -89,7 +89,7 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableViewSongs" prefHeight="500.0" prefWidth="439.0">
+                  <TableView fx:id="tableViewSongs" prefHeight="466.0" prefWidth="439.0">
                     <columns>
                       <TableColumn fx:id="tableColumnTitle" prefWidth="141.0" text="Title" />
                       <TableColumn fx:id="tableColumnArtist" prefWidth="151.0" text="Artist" />
@@ -99,7 +99,7 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="298.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="New" />
+                        <Button fx:id="buttonNewSong" mnemonicParsing="false" onAction="#buttonNewSong1" prefHeight="30.0" prefWidth="50.0" text="New" />
                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Edit" />
                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Delete">
                            <HBox.margin>
@@ -117,7 +117,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="888.0" layoutY="32.0" prefHeight="36.0" prefWidth="284.0">
+      <HBox alignment="CENTER" layoutX="774.0" layoutY="34.0" prefHeight="36.0" prefWidth="284.0">
          <children>
             <Label prefHeight="27.0" prefWidth="49.0" text="Filter:">
                <font>
