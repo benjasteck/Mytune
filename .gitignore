@@ -1,2 +1,5 @@
-# Project exclude paths
+$git checkout <Artist>
+$git rm -r *.extension
+$git commit -m "fixin...."
+$git push# Project exclude paths
 /target/

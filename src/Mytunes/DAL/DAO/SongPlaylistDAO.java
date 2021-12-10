@@ -3,7 +3,11 @@ package Mytunes.DAL.DAO;
 import Mytunes.BLL.SongBLL;
 import Mytunes.DAL.database.DbConnector;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongPlaylistDAO {
@@ -27,9 +31,27 @@ public class SongPlaylistDAO {
     }
 
     public List<SongBLL> getAllSongsForGivenPlayList(int playListID, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-            //todo get all song in a playlist defined by its id and return all song.
+        //todo get all song in a playlist defined by its id and return all song.
+        List<SongBLL> allSongsFromSamePlayList = new ArrayList<>();
+        String sql = "SELECT FROM Song_Playlist WHERE listid=?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, playListID);
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String artist = resultSet.getString("artist");
+                String title = resultSet.getString("title");
+                String time = resultSet.getString("time");
+                String filepath = resultSet.getString("filepath");
+                String category = resultSet.getString("category");
 
-            return null /*allSongsFromSamePlayList*/;
+                SongBLL song = new SongBLL(id, title, artist, category, time, filepath);
+                allSongsFromSamePlayList.add(song);
+
+            }
+        }
+        return allSongsFromSamePlayList;
     }
 
     public void moveSongDown(int playListId, int songRank) throws SQLException {

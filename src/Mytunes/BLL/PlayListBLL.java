@@ -14,6 +14,11 @@ public class PlayListBLL {
     List<Playlist> playlistListDemo; // this is test list for playlists
     PlaylistDAO database;
 
+
+
+    public PlayListBLL(int id, String name) {
+    }
+
     public PlayListBLL createPlayList(String name)  {
         return null;
     }

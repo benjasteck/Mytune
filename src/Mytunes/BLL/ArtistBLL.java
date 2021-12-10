@@ -5,6 +5,9 @@ import Mytunes.DAL.Interfaces.IArtists;
 import java.sql.SQLException;
 
 public class ArtistBLL implements IArtists {
+    public ArtistBLL(int id, String name) {
+    }
+
     @Override
     public int createArtist(String name) throws SQLException {
         return 0;

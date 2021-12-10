@@ -29,6 +29,11 @@ public class SongBLL  {
         SetUpTestSongs();
     } // temporarily like this
 
+
+
+    public SongBLL(int id, String title, String artist, String category, String time, String filepath) {
+    }
+
     public void deleteSong(String name){
         songListTest.removeIf(song -> song.getTitle().equals(name));
     } // this method remove the song by name

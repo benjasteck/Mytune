@@ -1,7 +1,11 @@
 package Mytunes.DAL.DAO;
 
+import Mytunes.BLL.ArtistBLL;
 import Mytunes.DAL.database.DbConnector;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ArtistsDAO {
@@ -25,9 +29,23 @@ public class ArtistsDAO {
     //todo abiltity to update the artist
     }
 
-    public int getArtistById(int artistId) throws SQLException {
+    public ArtistBLL getArtistById(int artistId) throws SQLException {
         //todo get the artist that matches the id and return the artist
-    return 1;
+        String sql = "SELECT FROM artist WHERE Id=?";
+        ArtistBLL artist = null;
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, artistId);
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("Id");
+                String name = resultSet.getString("name");
+                artist = new ArtistBLL(id, name);
+            }
+
+        }
+
+        return artist;
     }
 
     }
