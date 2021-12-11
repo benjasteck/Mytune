@@ -33,5 +33,17 @@ public class DemoModel {
         return playlistObservableList;
     }
 
+    public void updateListOfSongs(){
+        //songObservableList.clear();
+        //songObservableList.addAll(songmanager.getAllSongs());
+        songObservableList.setAll(songmanager.getAllSongs());
+        // one of this should work
+        // TODO does not update the tableview or observable list
+    }
+
+    public Song createSong(Song songis) {
+        return songmanager.createSong(songis);
+    }
+
 
 }

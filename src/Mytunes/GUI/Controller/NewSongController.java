@@ -1,5 +1,9 @@
 
         package Mytunes.GUI.Controller;
+        import Mytunes.BE.Category;
+        import Mytunes.BE.Song;
+        import Mytunes.BLL.SongBLL;
+        import Mytunes.GUI.Model.DemoModel;
         import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
         import javafx.fxml.FXMLLoader;
@@ -8,6 +12,7 @@
         import javafx.scene.Parent;
         import javafx.scene.Scene;
         import javafx.scene.control.Button;
+        import javafx.scene.control.TextField;
         import javafx.stage.Stage;
         import java.io.IOException;
         import java.net.URL;
@@ -21,7 +26,21 @@ public class NewSongController implements Initializable {
     @FXML
     private Button buttonCancelSong;
 
+    @FXML
+    private TextField textFieldArtist;
+
+    @FXML
+    private TextField textFieldFile;
+
+    @FXML
+    private TextField textFieldTime;
+
+    @FXML
+    private TextField textFieldTitle;
+
     MainScreenController mainScreenController;
+    DemoModel demoModel;
+    SongBLL songTemporaryDatabase;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -29,13 +48,23 @@ public class NewSongController implements Initializable {
 
     }
     public void buttonSwitchToMainScene (ActionEvent event) throws IOException {
+        songTemporaryDatabase = new SongBLL();
+        //Song newSong = new Song(textFieldTitle.getText().trim(), textFieldArtist.getText(), new Category("not defined yet"), Integer.parseInt(textFieldTime.getText()));
+        songTemporaryDatabase.createSong(new Song(textFieldTitle.getText().trim(), textFieldArtist.getText(), new Category("not defined yet"), Integer.parseInt(textFieldTime.getText())));
+        songTemporaryDatabase.printNumberOfSongs();
         //mainScreenController.updateTableViewSongs();
+        //demoModel.updateListOfSongs(); // TODO it cannot update tableview because it is null and it also does not add the song to the real
+
         Stage stage= (Stage) buttonSaveSong.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     void toCancelSceneSong(ActionEvent event) {
+        textFieldArtist.clear();
+        textFieldFile.clear();
+        textFieldTime.clear();
+        textFieldTitle.clear();
         Stage stage= (Stage) buttonCancelSong.getScene().getWindow();
         stage.close();
     }

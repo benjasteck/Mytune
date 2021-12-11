@@ -122,6 +122,7 @@ public class MainScreenController implements Initializable {
     }
 
     public void updateTableViewSongs(){
+
         tableViewSongs.getItems().clear();
         tableViewSongs.refresh();
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory<Song, String>("title"));
@@ -147,6 +148,11 @@ public class MainScreenController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    void toCloseApp(ActionEvent event) {
+        System.exit(0);
     }
 
 }

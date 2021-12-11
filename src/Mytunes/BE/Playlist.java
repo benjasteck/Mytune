@@ -1,4 +1,6 @@
-package Mytunes.be;
+package Mytunes.BE;
+
+import Mytunes.BE.Song;
 
 import java.util.List;
 

@@ -33,7 +33,7 @@
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <TextField />
+                    <TextField fx:id="textFieldTitle" />
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="688.0">
                     <Label prefHeight="27.0" prefWidth="63.0" text="Artist: ">
@@ -41,7 +41,7 @@
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <TextField />
+                    <TextField fx:id="textFieldArtist" />
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                     <Label prefHeight="27.0" prefWidth="96.0" text="Category:">
@@ -67,7 +67,7 @@
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <TextField />
+                    <TextField fx:id="textFieldTime" />
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                     <Label prefHeight="27.0" prefWidth="79.0" text="File:">
@@ -75,7 +75,7 @@
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <TextField />
+                    <TextField fx:id="textFieldFile" />
                     <Button mnemonicParsing="false" text="Choose...">
                         <HBox.margin>
                             <Insets left="20.0" />
