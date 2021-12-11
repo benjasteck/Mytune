@@ -1,6 +1,7 @@
 package Mytunes.BE;
 
 
+import jdk.jfr.Category;
 
 public class Song {
     private String title;
@@ -22,6 +23,9 @@ public class Song {
         this.artist = artist;
         this.title = title;
         this.category = category;
+    }
+
+    public Song(int id, String title, String artist, String category, int songTime, String filePath) {
     }
 
     public int getMinute() {

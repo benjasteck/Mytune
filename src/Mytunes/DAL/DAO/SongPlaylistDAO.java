@@ -16,8 +16,15 @@ public class SongPlaylistDAO {
         public SongPlaylistDAO() {
             databaseConnector = new DbConnector();
         }
-    public void addSongToPlayList(int songId, int playListId) throws SQLException {
+    public void addSongToPlayList(int songid, int listid) throws SQLException {
     //todo add a song to the playlist by songId and the playlist id and increase value
+        String sql = "INSERT INTO song_playlist VALUES(?,?)";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, songid);
+            preparedStatement.setInt(2, listid);
+            preparedStatement.executeUpdate();
+        }
     }
 
     private int lastValueInThePlayList(int playListId) throws SQLException {
@@ -26,8 +33,16 @@ public class SongPlaylistDAO {
     return 1;
     }
 
-    public void removeSongFromPlayList(int songId, int playListId, int value) throws SQLException {
+    public void removeSongFromPlayList(int songid, int listid, int value) throws SQLException {
     //todo remove songs from playlist by using song id, playlist id and the value
+        String sql = "DELETE FROM song_playlist WHERE [Song Id]=? AND [Playlist Id]=? AND [value]= ?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, songid);
+            preparedStatement.setInt(2, listid);
+            preparedStatement.setInt(3, value);
+            preparedStatement.executeUpdate();
+        }
     }
 
     public List<SongBLL> getAllSongsForGivenPlayList(int playListID, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
@@ -64,8 +79,14 @@ public class SongPlaylistDAO {
 
     }
 
-    public void deleteFromAllPlayLists(int songId) throws SQLException {
+    public void deleteFromAllPlayLists(int songid) throws SQLException {
     //todo delete a song specified by id from all playlists
+        String sql = "DELETE FROM Song_Playlist WHERE [Song id]=?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, songid);
+            preparedStatement.executeUpdate();
+        }
     }
 
     List<Integer> getValueSongInPlayList(int songId, int playListId) throws SQLException {

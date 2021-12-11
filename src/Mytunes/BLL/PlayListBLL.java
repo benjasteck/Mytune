@@ -53,5 +53,6 @@ public class PlayListBLL {
         playlist3.addSong(new Song("testing", "no idea", new Category("rap"), 511));
         playlist3.addSong(new Song("testing", "no idea", new Category("rap"), 511));*/
     } // TODO this does not work at all
+    //well no, the dao stuff is not done yet
 
 }

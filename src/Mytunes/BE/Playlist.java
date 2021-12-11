@@ -1,12 +1,12 @@
-package Mytunes.BE;
+package Mytunes.be;
 
 import java.util.List;
 
 public class Playlist {
     private String name;
-    private List<Song> songList;
+    private List<Mytunes.BE.Song> songList;
 
-    public Playlist (String name, List<Song> songList){
+    public Playlist (String name, List<Mytunes.BE.Song> songList){
         this.name = name;
         this.songList = songList;
     }
@@ -14,11 +14,11 @@ public class Playlist {
         this.name = name;
     }
 
-    public List<Song> getSongList() {
+    public List<Mytunes.BE.Song> getSongList() {
         return songList;
     }
 
-    public void setSongList(List<Song> songList) {
+    public void setSongList(List<Mytunes.BE.Song> songList) {
         this.songList = songList;
     }
 

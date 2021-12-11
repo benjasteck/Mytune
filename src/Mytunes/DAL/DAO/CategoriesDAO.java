@@ -2,10 +2,7 @@ package Mytunes.DAL.DAO;
 
 import Mytunes.DAL.database.DbConnector;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class CategoriesDAO {
     DbConnector databaseConnector;
@@ -16,18 +13,44 @@ public class CategoriesDAO {
 
 
     public int createNewCategory(String category) throws SQLException {
-    //todo check for a given category and return id of that if it exists, if not create a new id and return it
-    return 1;
+        String sql = "SELECT * FROM categories WHERE Category = ?";
+        int categoryid = 0;
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, category);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                categoryid = resultSet.getInt("Id");
+                return categoryid;
+            }
+            String sql1 = "INSERT INTO categories VALUES(?)";
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement1.setString(1, category);
+            preparedStatement1.executeUpdate();
+            ResultSet resultSet1 = preparedStatement1.getGeneratedKeys();
+            while (resultSet1.next()) {
+                categoryid = resultSet1.getInt(1);
+            }
+
+        }
+        return categoryid;
     }
 
     public void deleteCategory(int id) throws SQLException {
-    //todo delete category from sql coloumn
+        String sql = "DELETE FROM categories WHERE categoryid = ?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        }
+
     }
 
     public Mytunes.BLL.CategoryBLL getCategoryById(int categoryId) throws SQLException {
         //todo get a category by using id and return that.
-        //todo get the artist that matches the id and return the artist
-        String sql = "SELECT FROM category WHERE Id=?";
+        String sql = "SELECT FROM category WHERE categoryid=?";
         Mytunes.BLL.CategoryBLL category = null;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -42,6 +65,17 @@ public class CategoriesDAO {
 
         }
         return category;
+    }
+
+    public void updateCategory(int id, String name) throws SQLException {
+        String sql = "UPDATE categories SET Category=? WHERE id = ?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+
+        }
     }
 
 
