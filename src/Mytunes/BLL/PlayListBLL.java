@@ -37,11 +37,11 @@ public class PlayListBLL {
 
     public PlayListBLL (){
         playlistListDemo = new ArrayList<>();
-        //SetUpTestPlaylist();
+        SetUpTestPlaylist();
     } // temporarily like this
 
     private void SetUpTestPlaylist (){
-       /*Playlist playlist1;
+       /*Playlist playlist1 = new Playlist("playlist1");
         playlistListDemo.add(playlist1 = new Playlist("testPlaylist1"));
         playlist1.addSong(new Song("testing", "no idea", new Category("rap"), 511));
         Playlist playlist2;

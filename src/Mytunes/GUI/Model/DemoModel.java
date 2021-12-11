@@ -41,8 +41,8 @@ public class DemoModel {
         // TODO does not update the tableview or observable list
     }
 
-    public Song createSong(Song songis) {
-        return songmanager.createSong(songis);
+    public void createSong(Song songis) {
+        songmanager.createSong(songis);
     }
 
 
