@@ -25,9 +25,9 @@
          <children>
             <HBox alignment="CENTER" prefHeight="78.0" prefWidth="266.0" spacing="20.0">
                <children>
-                  <Button fx:id="buttonBack" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-                  <Button fx:id="buttonPlayPause" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" />
-                  <Button fx:id="buttonForward" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+                  <Button fx:id="buttonBack" mnemonicParsing="false" onAction="#toPreviousSong" prefHeight="50.0" prefWidth="50.0" />
+                  <Button fx:id="buttonPlayPause" mnemonicParsing="false" onAction="#toPlayPause" prefHeight="60.0" prefWidth="60.0" />
+                  <Button fx:id="buttonForward" mnemonicParsing="false" onAction="#toNextSong" prefHeight="50.0" prefWidth="50.0" />
                </children>
                <opaqueInsets>
                   <Insets />

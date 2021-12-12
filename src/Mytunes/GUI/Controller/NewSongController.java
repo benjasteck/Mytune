@@ -1,22 +1,18 @@
 
-        package Mytunes.GUI.Controller;
-        import Mytunes.BE.Category;
-        import Mytunes.BE.Song;
-        import Mytunes.BLL.SongBLL;
-        import Mytunes.GUI.Model.DemoModel;
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.fxml.FXMLLoader;
-        import javafx.fxml.Initializable;
-        import javafx.scene.Node;
-        import javafx.scene.Parent;
-        import javafx.scene.Scene;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.TextField;
-        import javafx.stage.Stage;
-        import java.io.IOException;
-        import java.net.URL;
-        import java.util.ResourceBundle;
+package Mytunes.GUI.Controller;
+
+import Mytunes.BE.Category;
+import Mytunes.GUI.Model.SongModel;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class NewSongController implements Initializable {
 
@@ -39,23 +35,22 @@ public class NewSongController implements Initializable {
     private TextField textFieldTitle;
 
     MainScreenController mainScreenController;
-    DemoModel demoModel;
-    SongBLL songTemporaryDatabase;
+
+    SongModel songModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        songModel = SongModel.getInstance();
 
     }
-    public void buttonSwitchToMainScene (ActionEvent event) throws IOException {
-        songTemporaryDatabase = new SongBLL();
+
+    public void buttonSwitchToMainScene(ActionEvent event) throws IOException {
         //Song newSong = new Song(textFieldTitle.getText().trim(), textFieldArtist.getText(), new Category("not defined yet"), Integer.parseInt(textFieldTime.getText()));
-        songTemporaryDatabase.createSong(new Song(textFieldTitle.getText().trim(), textFieldArtist.getText(), new Category("not defined yet"), Integer.parseInt(textFieldTime.getText())));
-        songTemporaryDatabase.printNumberOfSongs();
+        songModel.createSong(textFieldTitle.getText().trim(), textFieldArtist.getText(), new Category("not defined yet"), Integer.parseInt(textFieldTime.getText()), textFieldFile.getText().trim());
         //mainScreenController.updateTableViewSongs();
         //demoModel.updateListOfSongs(); // TODO it cannot update tableview because it is null and it also does not add the song to the real
 
-        Stage stage= (Stage) buttonSaveSong.getScene().getWindow();
+        Stage stage = (Stage) buttonSaveSong.getScene().getWindow();
         stage.close();
     }
 
@@ -65,7 +60,7 @@ public class NewSongController implements Initializable {
         textFieldFile.clear();
         textFieldTime.clear();
         textFieldTitle.clear();
-        Stage stage= (Stage) buttonCancelSong.getScene().getWindow();
+        Stage stage = (Stage) buttonCancelSong.getScene().getWindow();
         stage.close();
     }
 }

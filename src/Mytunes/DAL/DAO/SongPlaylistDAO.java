@@ -1,6 +1,6 @@
 package Mytunes.DAL.DAO;
 
-import Mytunes.BLL.SongBLL;
+import Mytunes.BLL.old.SongBLL;
 import Mytunes.DAL.database.DbConnector;
 
 import java.sql.Connection;
@@ -61,8 +61,8 @@ public class SongPlaylistDAO {
                 String filepath = resultSet.getString("filepath");
                 String category = resultSet.getString("category");
 
-                SongBLL song = new SongBLL(id, title, artist, category, time, filepath);
-                allSongsFromSamePlayList.add(song);
+                //SongBLL song = new SongBLL(id, title, artist, category, time, filepath);
+               // allSongsFromSamePlayList.add(song);
 
             }
         }

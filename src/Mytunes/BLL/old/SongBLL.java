@@ -1,4 +1,4 @@
-package Mytunes.BLL;
+package Mytunes.BLL.old;
 
 import Mytunes.BE.Category;
 import Mytunes.BE.Song;
@@ -24,8 +24,7 @@ public class SongBLL  {
 
     } // temporarily like this
 
-    public SongBLL(int id, String artist, String title, String time, String filepath, String category) {
-    }
+
 
 
     public void deleteSongByName(String name){
@@ -37,10 +36,7 @@ public class SongBLL  {
     }*/ // Is this good method?
 
     private void SetUpTestSongs (){
-        songListTest.add(new Song("Wilder and Mind", "Mumford&Sons", new Category("Rock"), 222));
-        songListTest.add(new Song("Awake My Soul", "Mumford&Sons", new Category("Rock"),311));
-        songListTest.add(new Song("The Cave", "Mumford&Sons", new Category("Rock"),237));
-        songListTest.add(new Song("Little Lion Man", "Mumford&Sons", new Category("Rock"),430));
+
     } // This is just test database - later this will be deleted
 
     public List<Song> getAllSongs() {

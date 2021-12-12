@@ -1,13 +1,13 @@
- package Mytunes.GUI.Controller;
+package Mytunes.GUI.Controller;
 
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.fxml.Initializable;
-        import javafx.scene.control.Button;
-        import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
-        import java.net.URL;
-        import java.util.ResourceBundle;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class NewPlaylistController implements Initializable {
 
@@ -24,14 +24,14 @@ public class NewPlaylistController implements Initializable {
 
     @FXML
     void toCancelScene(ActionEvent event) {
-        Stage stage= (Stage) buttonCancel.getScene().getWindow();
+        Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     void toSavePlaylist(ActionEvent event) {
         //mainScreenController.updateTableViewPlaylist();
-        Stage stage= (Stage) saveButtonPlaylist.getScene().getWindow();
+        Stage stage = (Stage) saveButtonPlaylist.getScene().getWindow();
         stage.close();
     }
 }

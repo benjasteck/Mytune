@@ -1,6 +1,6 @@
 package Mytunes.DAL.DAO;
 
-import Mytunes.BLL.ArtistBLL;
+import Mytunes.BLL.old.ArtistBLL;
 import Mytunes.DAL.database.DbConnector;
 
 import java.sql.*;

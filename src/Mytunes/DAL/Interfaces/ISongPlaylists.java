@@ -1,6 +1,6 @@
 package Mytunes.DAL.Interfaces;
 
-import Mytunes.BLL.SongBLL;
+import Mytunes.BLL.old.SongBLL;
 import Mytunes.DAL.DAO.ArtistsDAO;
 import Mytunes.DAL.DAO.CategoriesDAO;
 

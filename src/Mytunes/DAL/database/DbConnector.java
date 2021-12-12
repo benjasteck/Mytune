@@ -8,7 +8,7 @@ import java.sql.Connection;
 public class DbConnector {
     private SQLServerDataSource dataSource;
 
-    public void DatabaseConnector(){
+    public DbConnector(){
         dataSource = new SQLServerDataSource();
         dataSource.setServerName("10.176.111.31");
         dataSource.setDatabaseName("CSe21B_4_2");

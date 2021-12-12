@@ -2,12 +2,13 @@ package Mytunes.GUI.Controller;
 
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
-import Mytunes.GUI.Model.DemoModel;
+import Mytunes.GUI.Model.old.MainModel;
+import Mytunes.GUI.Model.PlaylistModel;
+import Mytunes.GUI.Model.SongModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,6 +17,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -66,15 +69,18 @@ public class MainScreenController implements Initializable {
     @FXML
     private Button buttonNewPlaylist;
 
-    DemoModel demoModel;
-    private Stage stage;
-    private Scene scene;
+    MainModel demoModel;
+    private MediaPlayer mediaPlayer;
+    private Media media;
     private Parent root;
+
+    private SongModel songModel;
+    private PlaylistModel playlistModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        demoModel = new DemoModel();
+        songModel = SongModel.getInstance();
+        playlistModel = PlaylistModel.getInstance();
         setButtons();
         setTableViews();
 
@@ -103,11 +109,11 @@ public class MainScreenController implements Initializable {
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         tableColumnCat.setCellValueFactory(new PropertyValueFactory<>("category"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("timeToString"));
-        tableViewSongs.setItems(demoModel.GetAllSongs()); // setting up tableview for All songs (right one)
+        tableViewSongs.setItems(songModel.getAllSongs()); // setting up tableview for All songs (right one)
 
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
-        tableViewPlaylist.setItems(demoModel.getAllPlaylists());// setting up tableview for All songs (left one)
+        tableViewPlaylist.setItems(playlistModel.getAllPlaylists());// setting up tableview for All songs (left one)
     }
 
     @FXML
@@ -129,14 +135,14 @@ public class MainScreenController implements Initializable {
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory<Song, String>("artist"));
         tableColumnCat.setCellValueFactory(new PropertyValueFactory<Song, String>("category"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory<Song, Integer>("timeToString"));
-        tableViewSongs.setItems(demoModel.GetAllSongs());
+        tableViewSongs.setItems(songModel.getAllSongs());
     }
     public void updateTableViewPlaylist(){
         tableViewPlaylist.getItems().clear();
         tableViewPlaylist.refresh();
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
-        tableViewPlaylist.setItems(demoModel.getAllPlaylists());
+        tableViewPlaylist.setItems(playlistModel.getAllPlaylists());
     }
 
     @FXML
@@ -155,4 +161,19 @@ public class MainScreenController implements Initializable {
         System.exit(0);
     }
 
+    @FXML
+    void toNextSong(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toPlayPause(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toPreviousSong(ActionEvent event) {
+
+    }
 }
+

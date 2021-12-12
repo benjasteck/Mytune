@@ -1,13 +1,13 @@
-package Mytunes.GUI.Model;
+package Mytunes.GUI.Model.old;
 
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
-import Mytunes.BLL.PlayListBLL;
-import Mytunes.BLL.SongBLL;
+import Mytunes.BLL.old.PlayListBLL;
+import Mytunes.BLL.old.SongBLL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class DemoModel {
+public class MainModel {
 
     private SongBLL songmanager;
     private PlayListBLL playlistmanager;
@@ -15,7 +15,7 @@ public class DemoModel {
     public ObservableList<Playlist> playlistObservableList;
 
 
-    public DemoModel(){
+    public MainModel(){
         songObservableList = FXCollections.observableArrayList();
         playlistObservableList = FXCollections.observableArrayList();
         songmanager = new SongBLL();
@@ -34,8 +34,6 @@ public class DemoModel {
     }
 
     public void updateListOfSongs(){
-        //songObservableList.clear();
-        //songObservableList.addAll(songmanager.getAllSongs());
         songObservableList.setAll(songmanager.getAllSongs());
         // one of this should work
         // TODO does not update the tableview or observable list

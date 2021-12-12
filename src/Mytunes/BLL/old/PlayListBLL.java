@@ -1,12 +1,10 @@
-package Mytunes.BLL;
+package Mytunes.BLL.old;
 
 import Mytunes.BE.Category;
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
 import Mytunes.DAL.DAO.PlaylistDAO;
-import Mytunes.DAL.Interfaces.IPlaylist;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +35,11 @@ public class PlayListBLL {
 
     public PlayListBLL (){
         playlistListDemo = new ArrayList<>();
-        SetUpTestPlaylist();
+       // SetUpTestPlaylist();
     } // temporarily like this
 
-    private void SetUpTestPlaylist (){
-       /*Playlist playlist1 = new Playlist("playlist1");
+   /* private void SetUpTestPlaylist (){
+       Playlist playlist1 = new Playlist("playlist1");
         playlistListDemo.add(playlist1 = new Playlist("testPlaylist1"));
         playlist1.addSong(new Song("testing", "no idea", new Category("rap"), 511));
         Playlist playlist2;
@@ -51,7 +49,7 @@ public class PlayListBLL {
         Playlist playlist3;
         playlistListDemo.add(playlist3 = new Playlist("testPlaylist3"));
         playlist3.addSong(new Song("testing", "no idea", new Category("rap"), 511));
-        playlist3.addSong(new Song("testing", "no idea", new Category("rap"), 511));*/
+        playlist3.addSong(new Song("testing", "no idea", new Category("rap"), 511));
     } // TODO this does not work at all
-
+*/
 }

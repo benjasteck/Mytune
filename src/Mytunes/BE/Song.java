@@ -3,6 +3,7 @@ package Mytunes.BE;
 
 
 public class Song {
+    public int id;
     private String title;
     private String artist;
     private Category category;
@@ -10,29 +11,22 @@ public class Song {
 
     private Integer seconds;
 
-    public Song(String title, String artist, Category category, Integer minute, Integer seconds){
-        this.seconds =(minute * 60) + seconds;
-        this.artist = artist;
-        this.title = title;
-        this.category = category;
-    }
-
-    public Song(String title, String artist, Category category, Integer duration){
+    public Song(int id, String title, String artist, Category category, Integer duration, String filePath){
+        this.id = id;
         this.seconds = duration;
         this.artist = artist;
         this.title = title;
         this.category = category;
-    }
-
-    public Song(int id, String title, String artist, String category, int songTime, String filePath) {
-    }
-
-    public Song(int id, String artist, String title, String time, String filepath, String category) {
+        this.filePath = filePath;
     }
 
     public int getMinute() {
 
         return this.seconds / 60;
+    }
+
+    public int getId() {
+        return id;
     }
 
 
@@ -93,6 +87,6 @@ public class Song {
 
     @Override
     public String toString() {
-        return "Song{" + "title='" + title + '\'' + ", artist='" + artist + '\'' + '}';
+        return "Song{" + "id='" + id + "title='" + title + '\'' + ", artist='" + artist + '\'' + '}';
     }
 }

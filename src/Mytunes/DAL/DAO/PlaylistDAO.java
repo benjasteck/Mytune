@@ -1,6 +1,6 @@
 package Mytunes.DAL.DAO;
 
-import Mytunes.BLL.PlayListBLL;
+import Mytunes.BLL.old.PlayListBLL;
 import Mytunes.DAL.database.DbConnector;
 
 import java.sql.*;
@@ -57,7 +57,7 @@ public class PlaylistDAO {
                     int id = resultSet.getInt("id");
                     String name = resultSet.getString("name");
 
-                    Mytunes.BLL.PlayListBLL playList = new PlayListBLL(id, name);
+                    PlayListBLL playList = new PlayListBLL(id, name);
                     allPlaylists.add(playList);
 
                 }
