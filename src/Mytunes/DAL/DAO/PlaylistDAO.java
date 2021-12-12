@@ -34,7 +34,7 @@ public class PlaylistDAO {
 
     public void deletePlaylist(String name) throws SQLException{
     //todo delete a playlist by name.
-        String sql = "DELETE FROM playlists WHERE Name =?";
+        String sql = "DELETE FROM playlists WHERE name =?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
@@ -43,6 +43,7 @@ public class PlaylistDAO {
     }
 
     public List<PlayListBLL> getAllPlaylists() throws SQLException{
+
         ArrayList<PlayListBLL> allPlaylists = new ArrayList<>();
         try (Connection connection = databaseConnector.getConnection()) {
 

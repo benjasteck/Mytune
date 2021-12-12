@@ -27,6 +27,9 @@ public class Song {
     public Song(int id, String title, String artist, String category, int songTime, String filePath) {
     }
 
+    public Song(int id, String artist, String title, String time, String filepath, String category) {
+    }
+
     public int getMinute() {
 
         return this.seconds / 60;

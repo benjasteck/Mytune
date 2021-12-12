@@ -3,7 +3,12 @@ package Mytunes.DAL.DAO;
 import Mytunes.BE.Song;
 import Mytunes.BLL.SongBLL;
 import Mytunes.DAL.database.DbConnector;
+import jdk.internal.icu.impl.StringPrepDataReader;
+import org.jaudiotagger.audio.AudioFile;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +16,7 @@ import java.util.List;
 
 public class SongDAO<list> {
     DbConnector databaseConnector;
+    private StringPrepDataReader AudioFileIO;
 
     public SongDAO() {
         databaseConnector = new DbConnector();
@@ -18,8 +24,8 @@ public class SongDAO<list> {
 
     public List<Song> AllSongsList = new ArrayList<Song>(); // this List should contain ALL the songs ever created
 
-    public List<SongBLL> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-        ArrayList<SongBLL> allsongs = new ArrayList<>();
+    public List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+        ArrayList<Song> allsongs = new ArrayList<>();
         try (Connection connection = databaseConnector.getConnection()) {
 
             String sql = "SELECT * FROM Song;";
@@ -37,7 +43,7 @@ public class SongDAO<list> {
                     String category = resultSet.getString("category");
 
 
-                    SongBLL song = new SongBLL(id, artist, title, time, filepath, category);
+                    Song song = new Song(id, artist, title, time, filepath, category);
                     allsongs.add(song);
 
                 }
@@ -98,8 +104,28 @@ public class SongDAO<list> {
         }
     }
 
-    public int getSongTime(Path filePath) {
+    public  int getSongTime(Path filePath) {
         //todo get the time of the song using filepath and implement it
+       /* int duration = 0;
+        try {
+            String filepath = "C:\\Program Files (x86)\\Java\\Damadane.mp3";
+
+            File file = new File(filepath);
+            FileInputStream fis = new FileInputStream(file);
+
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            //player = new Player(bis);
+
+
+            AudioFile audioFile = AudioFileIO.read(file);
+            duration = audioFile.getAudioHeader().getTrackLength();
+
+            //player.play();
+        } catch (Exception e) {
+
+            System.out.print("ERROR " + e);
+        }
+        return duration;*/
         return 1;
     }
 

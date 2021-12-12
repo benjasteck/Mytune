@@ -89,8 +89,21 @@ public class SongPlaylistDAO {
         }
     }
 
-    List<Integer> getValueSongInPlayList(int songId, int playListId) throws SQLException {
+    List<Integer> getValueSongInPlayList(int songid, int listid) throws SQLException {
             //todo return all values in a given playlist defined by id and connect them to a song id
-    return null /*allvalues*/;
+        List<Integer> allRankings = new ArrayList<>();
+        String sql = "SELECT FROM song_playlist WHERE songid=? AND [list Id]=?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, songid);
+            preparedStatement.setInt(2, listid);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                int ranking = resultSet.getInt(2);
+                allRankings.add(ranking);
+            }
+        }
+        return allRankings;
     }
 }
