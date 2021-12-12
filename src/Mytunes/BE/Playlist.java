@@ -1,28 +1,25 @@
 package Mytunes.BE;
 
-import Mytunes.BE.Song;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {
     private String name;
-    private List<Mytunes.BE.Song> songList;
+    private ArrayList<Song> songList;
 
-    public Playlist (String name, List<Mytunes.BE.Song> songList){
+    public Playlist (String name, ArrayList<Song> songList){
         this.name = name;
-        this.songList = songList;
+        this.songList = new ArrayList<Song>();
     }
     public Playlist (String name) {
         this.name = name;
     }
 
-    public List<Mytunes.BE.Song> getSongList() {
+    public List<Song> getSongList() {
         return songList;
     }
 
-    public void setSongList(List<Mytunes.BE.Song> songList) {
-        this.songList = songList;
-    }
+    //public void setSongList( List<Song> songList) {this.songList = songList;}
 
     public String getName() {
         return name;
@@ -31,9 +28,32 @@ public class Playlist {
     public void setName(String name) {
         this.name = name;
     }
-    public void addSong(Song m){
-        this.songList.add(m);
+
+    public Song findSong(String title){
+        for (Song checkedSong : songList)
+        {
+            if (checkedSong.getTitle().equals(title));
+            return checkedSong;
+        }
+        return null;
     }
+
+    public boolean addSong(Song songToAdd){
+        if(findSong(songToAdd.getTitle()) == null){
+            songList.add(songToAdd);
+            System.out.println("the song with the title" + songToAdd.getTitle() + "was added to the playlist");
+            return true;
+        }
+        else{
+            System.out.println("the song with the title" + songToAdd.getTitle() + "WAS NOT added to the playlist");
+        }
+        return false;
+    }
+
+    /*public void addSong(Song m){
+
+        this.songList.add(m);
+    }*/
     public void removeSong(Song s){
         this.songList.remove(s);
     }

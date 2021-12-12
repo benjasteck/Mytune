@@ -12,10 +12,9 @@ public class SongBLL  {
     SongDAO songdatabase;
     public List<Song> songListTest; // just test list of all Songs
 
-    public Song createSong (Song song){
+    public void createSong (Song song){
         //return songdatabase.createSong(song);
         songListTest.add(song);
-        return song;
     } // this method should create a new song
   // TODO need to alter this
 
@@ -47,10 +46,14 @@ public class SongBLL  {
     public List<Song> getAllSongs() {
         //return songdatabase.getAllSongs();
         return songListTest; // temporarily like this
-        // TODO This does not work - problems with methods in SongDAO
+        // TODO This does not work - problems with the method in SongDAO
     }
 
     public void printNumberOfSongs(){
         System.out.println(songListTest.size());
+        for (Song song:songListTest) {
+            System.out.println(song);
+        }
+        System.out.println();
     }
 }
