@@ -61,13 +61,13 @@ public class ArtistsDAO {
         }
     }
 
-    public ArtistBLL getArtistById(int artistId) throws SQLException {
+    public ArtistBLL getArtistById(int artistid) throws SQLException {
         //todo get the artist that matches the id and return the artist
         String sql = "SELECT FROM artist WHERE Id=?";
         ArtistBLL artist = null;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, artistId);
+            preparedStatement.setInt(1, artistid);
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
                 int id = resultSet.getInt("Id");

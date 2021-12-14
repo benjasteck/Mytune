@@ -49,13 +49,11 @@ public class SongDAO<list> {
         // it should not have the DAOs
         Song song;
         int id = 0;
-        int artistid = artistsDAO.createArtist(artist);
-        int categoryid = categoriesDAO.createNewCategory(category);
         String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, title);
-            statement.setInt(2, artistid);
-            statement.setInt(3, categoryid);
+            statement.setInt(2, artist);
+            statement.setInt(3, category);
             statement.setInt(4, getSongTime(Path.of(filePath)));
             statement.setString(5, filePath);
             int created = statement.executeUpdate();
