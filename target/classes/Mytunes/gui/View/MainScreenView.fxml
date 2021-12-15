@@ -34,7 +34,7 @@
                </opaqueInsets>
             </HBox>
             <Slider prefHeight="24.0" prefWidth="166.0" />
-            <ProgressBar prefWidth="200.0" progress="0.0" />
+            <ProgressBar prefHeight="18.0" prefWidth="257.0" progress="0.0" />
          </children>
       </VBox>
       <HBox layoutX="25.0" layoutY="127.0" prefHeight="554.0" prefWidth="1150.0" spacing="20.0">

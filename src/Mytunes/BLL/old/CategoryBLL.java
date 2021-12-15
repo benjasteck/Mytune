@@ -36,5 +36,10 @@ public class CategoryBLL implements ICategories {
 
     }
 
+    @Override
+    public String getCategoryName() {
+        return null;
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package Mytunes.DAL.DAO;
 
+import Mytunes.BE.Category;
 import Mytunes.BLL.old.CategoryBLL;
 import Mytunes.DAL.database.DbConnector;
 
@@ -13,7 +14,7 @@ public class CategoriesDAO {
     }
 
 
-    public int createNewCategory(String category) throws SQLException {
+    public int createNewCategory(Category category) throws SQLException {
         String sql = "SELECT * FROM categories WHERE name = ?";
         int categoryid = 0;
         try (Connection connection = databaseConnector.getConnection()) {

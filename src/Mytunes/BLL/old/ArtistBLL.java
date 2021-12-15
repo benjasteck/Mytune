@@ -27,4 +27,9 @@ public class ArtistBLL implements IArtists {
     public ArtistBLL getArtistById(int artistId) throws SQLException {
         return null;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

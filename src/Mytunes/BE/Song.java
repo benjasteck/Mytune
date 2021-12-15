@@ -11,7 +11,7 @@ public class Song {
 
     private Integer seconds;
 
-    public Song(int id, String title, String artist, String category, Integer duration, String filePath){
+    public Song(int id, String title, String artist, Category category, Integer duration, String filePath){
         this.id = id;
         this.seconds = duration;
         this.artist = artist;
@@ -19,6 +19,7 @@ public class Song {
         this.category = category;
         this.filePath = filePath;
     }
+
 
     public int getMinute() {
 

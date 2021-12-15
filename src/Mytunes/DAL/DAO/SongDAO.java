@@ -1,5 +1,6 @@
 package Mytunes.DAL.DAO;
 
+import Mytunes.BE.Category;
 import Mytunes.BE.Song;
 import jdk.internal.icu.impl.StringPrepDataReader;
 
@@ -38,7 +39,7 @@ public class SongDAO<list> {
                 int time = resultSet.getInt("time");
                 String filepath = resultSet.getString("filepath");
                 int categoryid = resultSet.getInt("categoryid");
-                String category = categoriesDAO.getCategoryById(categoryid).getCategoryName();
+                Category category = categoriesDAO.getCategoryById(categoryid).getCategoryName();
 
                 Song song = new Song(id, title, artist, category, time, filepath);
                 allsongs.add(song);
@@ -49,7 +50,7 @@ public class SongDAO<list> {
         return allsongs;
     }
 
-    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public Song createSong(String title, String artist, Category category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         //todo set all parameters here and and return a sung consisting of id, title, artist, category time and filepath
         // it should not have the DAOs
         Song song;
