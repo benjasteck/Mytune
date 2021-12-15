@@ -12,4 +12,6 @@ public interface IArtists {
     void updateArtist(int id, String name) throws SQLException;
 
     ArtistBLL getArtistById(int artistId) throws SQLException;
+
+    String getName();
 }

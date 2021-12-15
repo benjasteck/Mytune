@@ -15,4 +15,6 @@ public interface ICategories {
     Category getCategoryById(int categoryId) throws SQLException;
 
     void updateCategory(int id, String name) throws SQLException;
+
+    String getCategoryName();
 }

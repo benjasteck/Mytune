@@ -1,6 +1,5 @@
 package Mytunes.BLL.old;
 
-import Mytunes.BE.Category;
 import Mytunes.BE.Song;
 import Mytunes.DAL.DAO.SongDAO;
 
@@ -11,6 +10,9 @@ public class SongBLL  {
 
     SongDAO songdatabase;
     public List<Song> songListTest; // just test list of all Songs
+
+    public SongBLL(int id, String title, String artist, String category, String time, String filepath) {
+    }
 
     public void createSong (Song song){
         //return songdatabase.createSong(song);

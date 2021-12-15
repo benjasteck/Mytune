@@ -35,4 +35,6 @@ public class CategoryBLL implements ICategories {
     public void updateCategory(int id, String name) throws SQLException {
 
     }
+
+
 }
