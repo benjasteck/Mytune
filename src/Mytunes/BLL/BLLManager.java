@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BLLManager implements  IBLLManager{
 
-    private IDALManager dalManager;
+    private DALManager dalManager;
 
     public BLLManager() {
         this.dalManager = new DALManager();
@@ -34,6 +34,11 @@ public class BLLManager implements  IBLLManager{
     @Override
     public Playlist createPlaylist(String name) {
         return dalManager.createPlaylist(name);
+    }
+
+
+    public void deleteSong(Song song){
+        dalManager.deleteSong(song);
     }
 
 }

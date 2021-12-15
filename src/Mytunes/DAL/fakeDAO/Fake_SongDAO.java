@@ -26,4 +26,8 @@ public class Fake_SongDAO {
         fakeDB.add(newSong);
         return newSong;
     }
+
+    public void deleteSong(Song song){
+        fakeDB.remove(song);
+    }
 }

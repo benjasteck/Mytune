@@ -39,10 +39,10 @@ public class SongDAO<list> {
                 int time = resultSet.getInt("time");
                 String filepath = resultSet.getString("filepath");
                 int categoryid = resultSet.getInt("categoryid");
-                Category category = categoriesDAO.getCategoryById(categoryid).getCategoryName();
+                //Category category = categoriesDAO.getCategoryById(categoryid).getCategoryName();
 
-                Song song = new Song(id, title, artist, category, time, filepath);
-                allsongs.add(song);
+                //Song song = new Song(id, title, artist, category, time, filepath);
+                //allsongs.add(song);
 
             }
         }
@@ -52,7 +52,7 @@ public class SongDAO<list> {
 
     public Song createSong(String title, String artist, Category category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         //todo set all parameters here and and return a sung consisting of id, title, artist, category time and filepath
-        // it should not have the DAOs
+        // it should not have the DAOs parametres
         Song song;
         int id = 0;
         int artistid = artistsDAO.createArtist(artist);
@@ -110,10 +110,11 @@ public class SongDAO<list> {
     public int getSongTime(Path filePath) {
         //todo get the time of the song using filepath and implement it
         File file = new File("filename.mp3");
-        AudioFileFormat baseFileFormat = new MpegAudioFileReader().getAudioFileFormat(file);
-        Map properties = baseFileFormat.properties();
-        int duration = (int) properties.get("duration");
-        return duration;
+        //AudioFileFormat baseFileFormat = new MpegAudioFileReader().getAudioFileFormat(file);
+        //Map properties = baseFileFormat.properties();
+        //int duration = (int) properties.get("duration");
+        //return duration;
+        return 0;
 
     }
 

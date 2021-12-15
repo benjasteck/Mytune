@@ -20,7 +20,7 @@ public class SongModel {
         return single_instance;
     }
 
-    private IBLLManager bllManager;
+    private BLLManager bllManager;
     public ObservableList<Song> songObservableList;
 
     public SongModel() {
@@ -36,5 +36,10 @@ public class SongModel {
     public void createSong(String name, String artist, Category category, int time, String path) {
         Song addedSong = bllManager.createSong(name,  artist,  category,  time, path);
         songObservableList.add(addedSong);
+    }
+
+    public void deleteSong(Song song){
+        bllManager.deleteSong(song);
+        songObservableList.remove(song);
     }
 }

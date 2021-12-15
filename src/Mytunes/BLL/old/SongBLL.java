@@ -22,7 +22,6 @@ public class SongBLL  {
 
     public SongBLL (){
         songListTest = new ArrayList<>();
-        SetUpTestSongs();
 
     } // temporarily like this
 
@@ -33,13 +32,6 @@ public class SongBLL  {
         songListTest.removeIf(song -> song.getTitle().equals(name));
     } // this method remove the song by name
 
-    /*public Song deleteSong(String name){
-        return null;
-    }*/ // Is this good method?
-
-    private void SetUpTestSongs (){
-
-    } // This is just test database - later this will be deleted
 
     public List<Song> getAllSongs() {
         //return songdatabase.getAllSongs();

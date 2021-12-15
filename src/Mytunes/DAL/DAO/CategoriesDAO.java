@@ -19,7 +19,7 @@ public class CategoriesDAO {
         int categoryid = 0;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, category);
+            preparedStatement.setString(1, String.valueOf(category));
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -28,7 +28,7 @@ public class CategoriesDAO {
             }
             String sql1 = "INSERT INTO categories VALUES(?)";
             PreparedStatement preparedStatement1 = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement1.setString(1, category);
+            preparedStatement1.setString(1, String.valueOf(category));
             preparedStatement1.executeUpdate();
             ResultSet resultSet1 = preparedStatement1.getGeneratedKeys();
             while (resultSet1.next()) {
