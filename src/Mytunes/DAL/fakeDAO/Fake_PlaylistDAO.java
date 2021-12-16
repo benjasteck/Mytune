@@ -39,4 +39,8 @@ public class Fake_PlaylistDAO {
         fakeDB.add(newPlaylist);
         return newPlaylist;
     }
+
+    public void deletePlaylist(Playlist playlist){
+        fakeDB.remove(playlist);
+    }
 }

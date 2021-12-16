@@ -1,9 +1,11 @@
 package Mytunes.GUI.Controller;
 
+import Mytunes.GUI.Model.PlaylistModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -17,9 +19,14 @@ public class NewPlaylistController implements Initializable {
     @FXML
     private Button saveButtonPlaylist;
 
+    @FXML
+    private TextField TextFieldNamePlaylist;
+
+    PlaylistModel playlistModel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+    playlistModel = PlaylistModel.getInstance();
     }
 
     @FXML
@@ -30,8 +37,10 @@ public class NewPlaylistController implements Initializable {
 
     @FXML
     void toSavePlaylist(ActionEvent event) {
-        //mainScreenController.updateTableViewPlaylist();
+        playlistModel.createPlaylist(TextFieldNamePlaylist.getText());
         Stage stage = (Stage) saveButtonPlaylist.getScene().getWindow();
         stage.close();
     }
+
+
 }

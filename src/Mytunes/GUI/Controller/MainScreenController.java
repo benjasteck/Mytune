@@ -181,5 +181,11 @@ public class MainScreenController implements Initializable {
         Song songToDelete = tableViewSongs.getSelectionModel().getSelectedItem();
         songModel.deleteSong(songToDelete);
     }
+
+    @FXML
+    void toDeletePlaylist(ActionEvent event) {
+        Playlist playlistToDelete = tableViewPlaylist.getSelectionModel().getSelectedItem();
+        playlistModel.deletePlaylist(playlistToDelete);
+    }
 }
 

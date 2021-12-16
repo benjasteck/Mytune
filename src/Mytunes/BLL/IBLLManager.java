@@ -14,4 +14,8 @@ public interface IBLLManager {
     public List<Playlist>  getAllPlaylists();
 
     public Playlist createPlaylist(String name);
+
+    public void deleteSong(Song song);
+
+    public void deletePlaylist(Playlist playlist);
 }

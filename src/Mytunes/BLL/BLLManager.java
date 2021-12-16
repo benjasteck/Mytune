@@ -41,4 +41,8 @@ public class BLLManager implements  IBLLManager{
         dalManager.deleteSong(song);
     }
 
+    public void deletePlaylist(Playlist playlist){
+        dalManager.deletePlaylist(playlist);
+    }
+
 }

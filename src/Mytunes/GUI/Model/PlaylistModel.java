@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 public class PlaylistModel {
     private static PlaylistModel single_instance = null;
 
-    // Static method
     // Static method to create instance of Singleton class
     public static PlaylistModel getInstance()
     {
@@ -37,5 +36,10 @@ public class PlaylistModel {
     public void createPlaylist(String name) {
         Playlist addedPlaylist = bllManager.createPlaylist(name);
         playlistObservableList.add(addedPlaylist);
+    }
+
+    public void deletePlaylist(Playlist playlist){
+        bllManager.deletePlaylist(playlist);
+        playlistObservableList.remove(playlist);
     }
 }
