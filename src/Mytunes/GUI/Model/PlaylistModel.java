@@ -1,6 +1,5 @@
 package Mytunes.GUI.Model;
 
-import Mytunes.BE.Category;
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
 import Mytunes.BLL.BLLManager;
@@ -47,5 +46,10 @@ public class PlaylistModel {
 
     public List<Song> updatelistViewOfThePlaylist(Playlist playlist){
         return bllManager.getSongsFromPlaylist(playlist);
+    }
+
+    public void deleteSongFromPlaylist(Playlist chosenPlaylist, Song songToDelete) {
+        chosenPlaylist.removeSong(songToDelete);
+        //System.out.println(chosenPlaylist);
     }
 }

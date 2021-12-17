@@ -67,5 +67,8 @@ public class Playlist {
         return String.format((time / 60) + ":" + (time % 60));
     }
 
-
+    @Override
+    public String toString(){
+        return String.format("Name of the playlist: " + getName() + "list of songs: " + getSongList());
+    }
 }

@@ -86,6 +86,7 @@ public class MainScreenController implements Initializable {
 
     private SongModel songModel;
     private PlaylistModel playlistModel;
+    ObservableList<Song> listOfSongsToShow;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -122,10 +123,7 @@ public class MainScreenController implements Initializable {
         tableColumnTime.setCellValueFactory(new PropertyValueFactory<>("timeToString"));
         tableViewSongs.setItems(songModel.getAllSongs()); // setting up tableview for All songs (right one)
 
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
-        tableColumnTimeP.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
-        tableViewPlaylist.setItems(playlistModel.getAllPlaylists());// setting up tableview for All songs (left one)
+        refreshPlaylistTableView();// setting up tableview for All songs (left one)
     }
 
     @FXML
@@ -187,13 +185,33 @@ public class MainScreenController implements Initializable {
 
     @FXML
     void toShowSongsFromPlaylist(MouseEvent event) {
-        ObservableList<Song> listOfSongsToShow = FXCollections.observableArrayList(); 
+        listOfSongsToShow = FXCollections.observableArrayList();
         Playlist playlistToShow = tableViewPlaylist.getSelectionModel().getSelectedItem();
         List<Song> getSongsList = new ArrayList<>(playlistModel.updatelistViewOfThePlaylist(playlistToShow));
         listOfSongsToShow.addAll(getSongsList);
         listViewSongs.setItems(listOfSongsToShow);
+    }//TODO need to move some of the code to the PlaylistModel
+
+    @FXML
+    void toDeleteSongInPlaylist(ActionEvent event) {
+        Song songToDelete = listViewSongs.getSelectionModel().getSelectedItem();
+        Playlist chosenPlaylist = tableViewPlaylist.getSelectionModel().getSelectedItem();
+        playlistModel.deleteSongFromPlaylist(chosenPlaylist, songToDelete);
+        listOfSongsToShow.remove(songToDelete);
+        refreshPlaylistTableView(); // does not work
+        //TODO this does not upload the TableView of Playlists when I delete the song from the particular playlist
     }
 
+    @FXML
+    void toAddSongIntoPlaylist(ActionEvent event) {
 
+    }
+
+    public void refreshPlaylistTableView(){
+        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
+        tableColumnTimeP.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
+        tableViewPlaylist.setItems(playlistModel.getAllPlaylists());
+    }
 }
 

@@ -46,4 +46,8 @@ public class Fake_PlaylistDAO {
     public List<Song> getSongsFromPlaylist(Playlist playlist){
         return playlist.getSongList();
     }
+
+    //public Playlist getThePlaylist(Playlist playlistToShow){
+      //  return playlistToShow;
+    //}
 }
