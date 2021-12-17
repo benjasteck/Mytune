@@ -18,4 +18,6 @@ public interface IBLLManager {
     public void deleteSong(Song song);
 
     public void deletePlaylist(Playlist playlist);
+
+    public List<Song> getSongsFromPlaylist(Playlist playlist);
 }

@@ -43,4 +43,7 @@ public class Fake_PlaylistDAO {
     public void deletePlaylist(Playlist playlist){
         fakeDB.remove(playlist);
     }
+    public List<Song> getSongsFromPlaylist(Playlist playlist){
+        return playlist.getSongList();
+    }
 }

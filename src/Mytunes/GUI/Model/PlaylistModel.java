@@ -8,6 +8,8 @@ import Mytunes.BLL.IBLLManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public class PlaylistModel {
     private static PlaylistModel single_instance = null;
 
@@ -41,5 +43,9 @@ public class PlaylistModel {
     public void deletePlaylist(Playlist playlist){
         bllManager.deletePlaylist(playlist);
         playlistObservableList.remove(playlist);
+    }
+
+    public List<Song> updatelistViewOfThePlaylist(Playlist playlist){
+        return bllManager.getSongsFromPlaylist(playlist);
     }
 }

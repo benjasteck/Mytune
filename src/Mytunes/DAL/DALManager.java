@@ -62,5 +62,9 @@ public class DALManager implements IDALManager {
     public void deletePlaylist(Playlist playlist){
         fakePlaylistDAO.deletePlaylist(playlist);
     }
+
+    public List<Song> getSongsFromPlaylist(Playlist playlist){
+        return fakePlaylistDAO.getSongsFromPlaylist(playlist);
+    }
 }
 

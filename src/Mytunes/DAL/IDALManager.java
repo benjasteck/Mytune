@@ -14,4 +14,6 @@ public interface IDALManager {
     public List<Playlist> getAllPlaylists();
 
     public Playlist createPlaylist(String name);
+
+    public List<Song> getSongsFromPlaylist(Playlist playlist);
 }

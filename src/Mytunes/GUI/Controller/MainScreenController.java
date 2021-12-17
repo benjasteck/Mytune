@@ -5,6 +5,8 @@ import Mytunes.BE.Song;
 import Mytunes.GUI.Model.old.MainModel;
 import Mytunes.GUI.Model.PlaylistModel;
 import Mytunes.GUI.Model.SongModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,17 +14,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainScreenController implements Initializable {
@@ -55,7 +62,7 @@ public class MainScreenController implements Initializable {
     private TableView<Playlist> tableViewPlaylist;
 
     @FXML
-    private TableColumn<?, ?> tableColumnTimeP;
+    private TableColumn<Playlist, String> tableColumnTimeP;
 
     @FXML
     private TableColumn<Playlist, String> tableColumnName;
@@ -68,6 +75,9 @@ public class MainScreenController implements Initializable {
 
     @FXML
     private Button buttonNewPlaylist;
+
+    @FXML
+    private ListView<Song> listViewSongs;
 
     MainModel demoModel;
     private MediaPlayer mediaPlayer;
@@ -83,6 +93,7 @@ public class MainScreenController implements Initializable {
         playlistModel = PlaylistModel.getInstance();
         setButtons();
         setTableViews();
+        listViewSongs.getItems().addAll();
 
     }
 
@@ -113,6 +124,7 @@ public class MainScreenController implements Initializable {
 
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
+        tableColumnTimeP.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
         tableViewPlaylist.setItems(playlistModel.getAllPlaylists());// setting up tableview for All songs (left one)
     }
 
@@ -127,23 +139,7 @@ public class MainScreenController implements Initializable {
         stage.show();
     }
 
-    public void updateTableViewSongs(){
 
-        tableViewSongs.getItems().clear();
-        tableViewSongs.refresh();
-        tableColumnTitle.setCellValueFactory(new PropertyValueFactory<Song, String>("title"));
-        tableColumnArtist.setCellValueFactory(new PropertyValueFactory<Song, String>("artist"));
-        tableColumnCat.setCellValueFactory(new PropertyValueFactory<Song, String>("category"));
-        tableColumnTime.setCellValueFactory(new PropertyValueFactory<Song, Integer>("timeToString"));
-        tableViewSongs.setItems(songModel.getAllSongs());
-    }
-    public void updateTableViewPlaylist(){
-        tableViewPlaylist.getItems().clear();
-        tableViewPlaylist.refresh();
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
-        tableViewPlaylist.setItems(playlistModel.getAllPlaylists());
-    }
 
     @FXML
     public void toNewPlaylist(ActionEvent event) {
@@ -187,5 +183,17 @@ public class MainScreenController implements Initializable {
         Playlist playlistToDelete = tableViewPlaylist.getSelectionModel().getSelectedItem();
         playlistModel.deletePlaylist(playlistToDelete);
     }
+
+
+    @FXML
+    void toShowSongsFromPlaylist(MouseEvent event) {
+        ObservableList<Song> listOfSongsToShow = FXCollections.observableArrayList(); 
+        Playlist playlistToShow = tableViewPlaylist.getSelectionModel().getSelectedItem();
+        List<Song> getSongsList = new ArrayList<>(playlistModel.updatelistViewOfThePlaylist(playlistToShow));
+        listOfSongsToShow.addAll(getSongsList);
+        listViewSongs.setItems(listOfSongsToShow);
+    }
+
+
 }
 

@@ -86,8 +86,13 @@ public class Song {
         this.category = category;
     }
 
+    //@Override
+    //public String toString() {
+        //return "Song{" + "id='" + id + "title='" + title + '\'' + ", artist='" + artist + '\'' + '}';
+    //}
+
     @Override
-    public String toString() {
-        return "Song{" + "id='" + id + "title='" + title + '\'' + ", artist='" + artist + '\'' + '}';
+    public String toString () {
+        return String.format("%s", getTitle());
     }
 }
