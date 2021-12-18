@@ -4,6 +4,7 @@ import Mytunes.BE.Category;
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface IBLLManager {
@@ -20,4 +21,6 @@ public interface IBLLManager {
     public void deletePlaylist(Playlist playlist);
 
     public List<Song> getSongsFromPlaylist(Playlist playlist);
+
+    public List<Category> getCategoryList();
 }

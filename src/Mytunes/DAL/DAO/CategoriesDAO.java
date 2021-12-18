@@ -1,7 +1,6 @@
 package Mytunes.DAL.DAO;
 
 import Mytunes.BE.Category;
-import Mytunes.BLL.old.CategoryBLL;
 import Mytunes.DAL.database.DbConnector;
 
 import java.sql.*;
@@ -50,7 +49,7 @@ public class CategoriesDAO {
 
     }
 
-    public CategoryBLL getCategoryById(int categoryid) throws SQLException {
+    /*public CategoryBLL getCategoryById(int categoryid) throws SQLException {
         //todo get a category by using id and return that.
         String sql = "SELECT FROM category WHERE categoryid=?";
         CategoryBLL category = null;
@@ -62,12 +61,12 @@ public class CategoriesDAO {
                 int id = resultSet.getInt("id");
                 int categoryId = resultSet.getInt("categoryid");
                 String name = resultSet.getString("name");
-                category = new CategoryBLL(id, categoryId, name);
+                //category = new CategoryBLL(id, categoryId, name);
             }
 
         }
         return category;
-    }
+    }*/
 
     public void updateCategory(int id, String name) throws SQLException {
         String sql = "UPDATE categories SET categoryid=? WHERE id = ?";

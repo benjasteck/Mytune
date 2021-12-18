@@ -39,18 +39,12 @@ public class Playlist {
     public boolean addSong(Song songToAdd) {
         if (findSong(songToAdd.getId()) == null) {
             songList.add(songToAdd);
-            System.out.println("the song with the title " + songToAdd.getTitle() + " was added to the playlist");
             return true;
         } else {
-            System.out.println("the song with the title " + songToAdd.getTitle() + " WAS NOT added to the playlist");
         }
         return false;
     }
 
-    /*public void addSong(Song m){
-
-        this.songList.add(m);
-    }*/
     public void removeSong(Song s) {
         this.songList.remove(s);
     }

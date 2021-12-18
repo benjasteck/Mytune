@@ -3,6 +3,7 @@ package Mytunes.DAL;
 import Mytunes.BE.Category;
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
+import Mytunes.DAL.DAO.CatogriesDAO;
 import Mytunes.DAL.DAO.PlaylistDAO;
 import Mytunes.DAL.DAO.SongDAO;
 import Mytunes.DAL.database.DbConnector;
@@ -16,6 +17,7 @@ public class DALManager implements IDALManager {
     private DbConnector connector;
     private SongDAO songDAO;
     private PlaylistDAO playlistDAO;
+    private CatogriesDAO catogriesDAO;
 
     private Fake_SongDAO fakeSongDAO;
     private Fake_PlaylistDAO fakePlaylistDAO;
@@ -65,6 +67,10 @@ public class DALManager implements IDALManager {
 
     public List<Song> getSongsFromPlaylist(Playlist playlist){
         return fakePlaylistDAO.getSongsFromPlaylist(playlist);
+    }
+
+    public List<Category> setAllCategoryList() {
+        return catogriesDAO.setAllCategoryList();
     }
 }
 

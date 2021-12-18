@@ -10,10 +10,10 @@ public class Fake_SongDAO {
     private List<Song> fakeDB = new ArrayList<>();
 
     public Fake_SongDAO() {
-        fakeDB.add(new Song(1,"Wilder and Mind", "Mumford&Sons", new Category("Rock"), 222, "Test path"));
-        fakeDB.add(new Song(2,"Awake My Soul", "Mumford&Sons", new Category("Rock"),311, "C:Something something"));
-        fakeDB.add(new Song(3,"The Cave", "Mumford&Sons", new Category("Rock"),237,""));
-        fakeDB.add(new Song(4,"Little Lion Man", "Mumford&Sons", new Category("Rock"),430,""));
+        fakeDB.add(new Song(1,"Wilder and Mind", "Mumford&Sons", Category.Rock, 222, "Test path"));
+        fakeDB.add(new Song(2,"Awake My Soul", "Mumford&Sons", Category.Rock,311, "C:Something something"));
+        fakeDB.add(new Song(3,"The Cave", "Mumford&Sons", Category.Rock,237,""));
+        fakeDB.add(new Song(4,"Little Lion Man", "Mumford&Sons", Category.Rock,430,""));
     }
 
 

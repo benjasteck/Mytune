@@ -2,11 +2,13 @@
 package Mytunes.GUI.Controller;
 
 import Mytunes.BE.Category;
+import Mytunes.GUI.Model.EnumModel;
 import Mytunes.GUI.Model.SongModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -34,22 +36,25 @@ public class NewSongController implements Initializable {
     @FXML
     private TextField textFieldTitle;
 
+    @FXML
+    private ChoiceBox<Category> choiceBoxCategory;
+
     MainScreenController mainScreenController;
 
     SongModel songModel;
+    EnumModel enumModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         songModel = SongModel.getInstance();
+        enumModel = new EnumModel();
+        choiceBoxCategory.getItems().addAll(enumModel.getCategoryObservableList());
+
 
     }
 
     public void buttonSwitchToMainScene(ActionEvent event) throws IOException {
-        //Song newSong = new Song(textFieldTitle.getText().trim(), textFieldArtist.getText(), new Category("not defined yet"), Integer.parseInt(textFieldTime.getText()));
-        songModel.createSong(textFieldTitle.getText().trim(), textFieldArtist.getText(), new Category("not defined yet"), Integer.parseInt(textFieldTime.getText()), textFieldFile.getText().trim());
-        //mainScreenController.updateTableViewSongs();
-        //demoModel.updateListOfSongs(); // TODO it cannot update tableview because it is null and it also does not add the song to the real
-
+        songModel.createSong(textFieldTitle.getText().trim(), textFieldArtist.getText(), choiceBoxCategory.getSelectionModel().getSelectedItem(), Integer.parseInt(textFieldTime.getText()), textFieldFile.getText().trim());
         Stage stage = (Stage) buttonSaveSong.getScene().getWindow();
         stage.close();
     }

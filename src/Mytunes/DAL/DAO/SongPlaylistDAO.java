@@ -73,10 +73,10 @@ public class SongPlaylistDAO {
                 String time = resultSet.getString("time");
                 String filepath = resultSet.getString("filepath");
                 int categoryid = resultSet.getInt("category");
-                String category = categoriesDAO.getCategoryById(categoryid).getCategoryName();
+                //String category = categoriesDAO.getCategoryById(categoryid).getCategoryName();
 
-                SongBLL song = new SongBLL(id, title, artist, category, time, filepath);
-                allSongsFromSamePlayList.add(song);
+                //SongBLL song = new SongBLL(id, title, artist, category, time, filepath);
+                //allSongsFromSamePlayList.add(song);
 
             }
         }

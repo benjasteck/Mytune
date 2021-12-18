@@ -2,7 +2,6 @@ package Mytunes.GUI.Controller;
 
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
-import Mytunes.GUI.Model.old.MainModel;
 import Mytunes.GUI.Model.PlaylistModel;
 import Mytunes.GUI.Model.SongModel;
 import javafx.collections.FXCollections;
@@ -79,7 +78,6 @@ public class MainScreenController implements Initializable {
     @FXML
     private ListView<Song> listViewSongs;
 
-    MainModel demoModel;
     private MediaPlayer mediaPlayer;
     private Media media;
     private Parent root;
@@ -199,7 +197,7 @@ public class MainScreenController implements Initializable {
         playlistModel.deleteSongFromPlaylist(chosenPlaylist, songToDelete);
         listOfSongsToShow.remove(songToDelete);
         refreshPlaylistTableView(); // does not work
-        //TODO this does not upload the TableView of Playlists when I delete the song from the particular playlist
+        
     }
 
     @FXML
@@ -208,6 +206,7 @@ public class MainScreenController implements Initializable {
     }
 
     public void refreshPlaylistTableView(){
+        tableViewPlaylist.refresh();
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
         tableColumnTimeP.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
