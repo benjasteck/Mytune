@@ -69,8 +69,6 @@ public class DALManager implements IDALManager {
         return fakePlaylistDAO.getSongsFromPlaylist(playlist);
     }
 
-    public List<Category> setAllCategoryList() {
-        return catogriesDAO.setAllCategoryList();
-    }
+
 }
 

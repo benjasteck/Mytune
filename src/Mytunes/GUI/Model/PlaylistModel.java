@@ -50,7 +50,9 @@ public class PlaylistModel {
 
     public void deleteSongFromPlaylist(Playlist chosenPlaylist, Song songToDelete) {
         chosenPlaylist.removeSong(songToDelete);
-        //System.out.println(chosenPlaylist);
+    }
+    public void addSongToThePlaylist(Playlist chosenPlaylist, Song songToAdd) {
+        chosenPlaylist.addSong(songToAdd);
     }
 
 

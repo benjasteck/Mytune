@@ -85,6 +85,7 @@ public class MainScreenController implements Initializable {
     private SongModel songModel;
     private PlaylistModel playlistModel;
     ObservableList<Song> listOfSongsToShow;
+    public Playlist currentPlaylist;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -188,6 +189,8 @@ public class MainScreenController implements Initializable {
         List<Song> getSongsList = new ArrayList<>(playlistModel.updatelistViewOfThePlaylist(playlistToShow));
         listOfSongsToShow.addAll(getSongsList);
         listViewSongs.setItems(listOfSongsToShow);
+        currentPlaylist = playlistToShow;
+
     }//TODO need to move some of the code to the PlaylistModel
 
     @FXML
@@ -196,14 +199,20 @@ public class MainScreenController implements Initializable {
         Playlist chosenPlaylist = tableViewPlaylist.getSelectionModel().getSelectedItem();
         playlistModel.deleteSongFromPlaylist(chosenPlaylist, songToDelete);
         listOfSongsToShow.remove(songToDelete);
-        refreshPlaylistTableView(); // does not work
+        refreshPlaylistTableView();
         
     }
 
     @FXML
     void toAddSongIntoPlaylist(ActionEvent event) {
-
-    }
+        currentPlaylist = tableViewPlaylist.getSelectionModel().getSelectedItem();
+        Song songToAdd = tableViewSongs.getSelectionModel().getSelectedItem();
+        currentPlaylist.addSong(songToAdd);
+        System.out.println(currentPlaylist);
+        listViewSongs.refresh();
+        tableViewPlaylist.refresh();
+    } // TODO this is probably som bug but I cannot add first 2 songs into playlists
+    //TODO listViewSong does not refresh when I add new song
 
     public void refreshPlaylistTableView(){
         tableViewPlaylist.refresh();

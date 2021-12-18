@@ -22,5 +22,4 @@ public interface IBLLManager {
 
     public List<Song> getSongsFromPlaylist(Playlist playlist);
 
-    public List<Category> getCategoryList();
 }

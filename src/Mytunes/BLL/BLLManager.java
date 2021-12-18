@@ -47,7 +47,4 @@ public class BLLManager implements  IBLLManager{
 
     public List<Song> getSongsFromPlaylist(Playlist playlist){ return dalManager.getSongsFromPlaylist(playlist);}
 
-    public List<Category> getCategoryList() {
-        return dalManager.setAllCategoryList();
-    }
 }
