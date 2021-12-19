@@ -23,6 +23,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -81,6 +82,8 @@ public class MainScreenController implements Initializable {
     private MediaPlayer mediaPlayer;
     private Media media;
     private Parent root;
+    private int played = 0;
+    private Song actualSong;
 
     private SongModel songModel;
     private PlaylistModel playlistModel;
@@ -188,11 +191,36 @@ public class MainScreenController implements Initializable {
 
     @FXML
     void toNextSong(ActionEvent event) {
-
+        toPlayPause(event);
     }
 
     @FXML
     void toPlayPause(ActionEvent event) {
+        if (played == 0){
+            Song songToPlay = listViewSongs.getSelectionModel().getSelectedItem();
+            if (songToPlay == null || songToPlay != actualSong){
+                System.out.println(songToPlay.getFilePath());
+               // File f = new File(songToPlay.getFilePath());
+                File f = new File("C:/Users/ponce/IdeaProjects/Mytune/src/Mytunes/musicDemo/Venom.mp3");
+                if (f.exists()) {
+                    System.out.println("MP3 Exists");
+                } else {
+                    System.out.println("MP3 DONT EXISTS");
+                }
+                media = new Media(f.toURI().toString());
+                mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+                actualSong = songToPlay;
+            }
+            else {
+                mediaPlayer.play();
+            }
+            played = 1;
+        }
+        else  {
+            mediaPlayer.pause();
+            played = 0;
+        }
 
     }
 

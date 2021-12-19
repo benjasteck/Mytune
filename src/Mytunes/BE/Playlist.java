@@ -45,8 +45,8 @@ public class Playlist {
         return false;
     }
 
-    public void removeSong(Song s) {
-        this.songList.remove(s);
+    public boolean removeSong(Song s) {
+        return this.songList.remove(s);
     }
 
     public Integer getNumberOfSongs() {
