@@ -3,9 +3,10 @@ package Mytunes.GUI.Model;
 import Mytunes.BE.Category;
 import Mytunes.BE.Song;
 import Mytunes.BLL.BLLManager;
-import Mytunes.BLL.IBLLManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class SongModel {
     private static SongModel single_instance = null;
@@ -39,7 +40,14 @@ public class SongModel {
     }
 
     public void deleteSong(Song song){
-        bllManager.deleteSong(song);
-        songObservableList.remove(song);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this song "  + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            bllManager.deleteSong(song);
+            songObservableList.remove(song);
+        }
+
     }
 }
