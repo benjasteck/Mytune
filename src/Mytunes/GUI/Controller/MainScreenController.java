@@ -191,42 +191,50 @@ public class MainScreenController implements Initializable {
 
     @FXML
     void toNextSong(ActionEvent event) {
+        listViewSongs.getSelectionModel().selectNext();
         toPlayPause(event);
     }
 
     @FXML
     void toPlayPause(ActionEvent event) {
-        if (played == 0){
-            Song songToPlay = listViewSongs.getSelectionModel().getSelectedItem();
-            if (songToPlay == null || songToPlay != actualSong){
+        Song songToPlay = listViewSongs.getSelectionModel().getSelectedItem();
+        if (songToPlay == null){
+            return;
+        }
+        if (songToPlay == actualSong){
+            if (played == 1){
+                mediaPlayer.pause();
+                played = 0;
+            }
+            else {
+                mediaPlayer.play();
+                played = 1;
+            }
+        }  else {
                 System.out.println(songToPlay.getFilePath());
-               // File f = new File(songToPlay.getFilePath());
-                File f = new File("C:/Users/ponce/IdeaProjects/Mytune/src/Mytunes/musicDemo/Venom.mp3");
+                File f = new File(songToPlay.getFilePath());
+               // File f = new File("C:/Users/ponce/IdeaProjects/Mytune/src/Mytunes/musicDemo/Venom.mp3");
                 if (f.exists()) {
                     System.out.println("MP3 Exists");
                 } else {
                     System.out.println("MP3 DONT EXISTS");
                 }
+                if (mediaPlayer != null){
+                    mediaPlayer.stop();
+                }
                 media = new Media(f.toURI().toString());
                 mediaPlayer = new MediaPlayer(media);
                 mediaPlayer.play();
                 actualSong = songToPlay;
+                played = 1;
             }
-            else {
-                mediaPlayer.play();
-            }
-            played = 1;
-        }
-        else  {
-            mediaPlayer.pause();
-            played = 0;
-        }
-
     }
 
     @FXML
     void toPreviousSong(ActionEvent event) {
+        listViewSongs.getSelectionModel().selectPrevious();
 
+        toPlayPause(event);
     }
 
     @FXML
