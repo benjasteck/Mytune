@@ -9,6 +9,8 @@ public class Playlist {
     private int id;
     private String name;
     private ArrayList<Song> songList;
+    private String time;
+    private int songs;
 
     public Playlist(int id, String name) {
         this.id = id;
@@ -23,15 +25,29 @@ public class Playlist {
         return songList;
     }
 
-    //public void setSongList( List<Song> songList) {this.songList = songList;}
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
+
+    public int getid(){return id;}
+
+    public int getsongs(){return songs;}
+    public void setsongs(int songs){this.songs = songs;}
+
+    public String gettime(){return time;}
+
+    public Integer getNumberOfSongs() {
+        return songList.size();
+    }
+
+
+
+    //public void setSongList( List<Song> songList) {this.songList = songList;}
+
+
 
     public Song findSong(int id) {
         for (Song checkedSong : songList) {
@@ -54,9 +70,7 @@ public class Playlist {
         return this.songList.remove(s);
     }
 
-    public Integer getNumberOfSongs() {
-        return songList.size();
-    }
+
 
     public String getTotalTime() {
         int time = 0;
