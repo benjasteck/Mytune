@@ -19,7 +19,7 @@ public class SongDAO<list> {
         ArrayList<Song> allSongs = new ArrayList<>();
 
         try (Connection connection = dbConnector.getConnection()) {
-            String sql = "SELECT * FROM Songs";
+            String sql = "SELECT * FROM Song";
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery(sql);
@@ -49,7 +49,7 @@ public class SongDAO<list> {
         String filePath = song.getFilePath();
 
         try (Connection connection = dbConnector.getConnection()) {
-            String sql = "INSERT INTO Songs(TITLE, ARTIST, CATEGORY, DURATION, FILEPATH) OUTPUT inserted.ID VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Song(TITLE, ARTIST, CATEGORY, DURATION, FILEPATH) OUTPUT inserted.ID VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, title);
@@ -83,7 +83,7 @@ public class SongDAO<list> {
         String source = song.getFilePath();
 
         try (Connection connection = dbConnector.getConnection()) {
-            String sql = "UPDATE Songs SET TITLE = ?, ARTIST = ?, GENRE = ?, TIME = ?, SOURCE = ? WHERE ID = ?";
+            String sql = "UPDATE Song SET TITLE = ?, ARTIST = ?, GENRE = ?, TIME = ?, SOURCE = ? WHERE ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, artist);
@@ -99,11 +99,11 @@ public class SongDAO<list> {
 
     public void deleteSong(Song song) throws SQLException{
         try (Connection connection = dbConnector.getConnection()) {
-            String sqlPlaylists = "DELETE FROM SongsOnPlaylist WHERE SongID=?";
+            String sqlPlaylists = "DELETE FROM SongsOnPlaylist WHERE SongiD=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlPlaylists);
             preparedStatement.setInt(1, song.getId());
             preparedStatement.execute();
-            String sqlSong = "DELETE FROM Songs WHERE ID = ?";
+            String sqlSong = "DELETE FROM Song WHERE id = ?";
 
             PreparedStatement preparedStatement2 = connection.prepareStatement(sqlSong);
             preparedStatement2.setInt(1, song.getId());
