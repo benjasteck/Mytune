@@ -1,4 +1,4 @@
-package Mytunes.be;
+package Mytunes.BE;
 
 import Mytunes.DAL.DAO.SongDAO;
 

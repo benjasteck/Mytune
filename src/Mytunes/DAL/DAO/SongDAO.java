@@ -1,13 +1,8 @@
 package Mytunes.DAL.DAO;
 
 import Mytunes.BE.Category;
-import Mytunes.DAL.Interfaces.ICategories;
 import Mytunes.DAL.database.DbConnector;
 import Mytunes.BE.Song;
-import jdk.internal.icu.impl.StringPrepDataReader;
-
-import java.io.File;
-import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,4 +112,11 @@ public class SongDAO<list> {
             throw new SQLException(exception);
         }
     }
+
+    public Song getSongById(int id) throws SQLException {
+        Song song = null;
+        String sql = "SELECT *  FROM Song WHERE id=?";
+        try(Connection connection = dbConnector.getConnection()){PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);}
+        return song;}
 }

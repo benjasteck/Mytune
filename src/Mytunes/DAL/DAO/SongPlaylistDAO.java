@@ -2,7 +2,7 @@ package Mytunes.DAL.DAO;
 
 import Mytunes.BLL.old.SongBLL;
 import Mytunes.DAL.database.DbConnector;
-import Mytunes.be.SongPlaylist;
+import Mytunes.BE.SongPlaylist;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

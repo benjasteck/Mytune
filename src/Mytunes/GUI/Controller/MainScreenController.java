@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -98,7 +99,11 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        songModel = SongModel.getInstance();
+        try {
+            songModel = SongModel.getInstance();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         playlistModel = PlaylistModel.getInstance();
         setButtons();
         setTableViews();

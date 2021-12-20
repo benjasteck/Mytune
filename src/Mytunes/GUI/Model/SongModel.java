@@ -35,8 +35,8 @@ public class SongModel {
         return songObservableList;
     }
 
-    public void createSong(String name, String artist, Category category, int time, String path) {
-        Song addedSong = bllManager.createSong(name,  artist,  category,  time, path);
+    public void createSong(Song song) throws SQLException {
+        Song addedSong = bllManager.createSong(song);
         songObservableList.add(addedSong);
     }
 

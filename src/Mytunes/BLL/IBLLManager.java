@@ -11,8 +11,6 @@ import java.util.List;
 public interface IBLLManager {
     public List<Song> getAllSongs() throws SQLException;
 
-    public Song createSong(String name, String artist, Category category, int time, String path);
-
     Song createSong(Song song) throws SQLException;
 
     public List<Playlist>  getAllPlaylists();
