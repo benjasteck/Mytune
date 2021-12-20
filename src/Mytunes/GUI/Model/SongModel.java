@@ -8,13 +8,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+import java.sql.SQLException;
+
 public class SongModel {
     private static SongModel single_instance = null;
 
     // Static method
     // Static method to create instance of Singleton class
-    public static SongModel getInstance()
-    {
+    public static SongModel getInstance() throws SQLException {
         if (single_instance == null)
             single_instance = new SongModel();
 
@@ -24,7 +25,7 @@ public class SongModel {
     private BLLManager bllManager;
     public ObservableList<Song> songObservableList;
 
-    public SongModel() {
+    public SongModel() throws SQLException {
         bllManager = new BLLManager();
         songObservableList = FXCollections.observableArrayList();
         songObservableList.addAll(bllManager.getAllSongs());

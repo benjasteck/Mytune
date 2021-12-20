@@ -2,14 +2,16 @@ package Mytunes.DAL;
 
 import Mytunes.BE.Category;
 import Mytunes.BE.Playlist;
-import Mytunes.be.Song;
+import Mytunes.BE.Song;
+import Mytunes.BE.Song;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IDALManager {
-    public List<Song> getAllSongs();
+    public List<Song> getAllSongs() throws SQLException;
 
-    public Song createSong(String name, String artist, Category category, int time, String path);
+    Song createSong(Song song) throws SQLException;
 
     public List<Playlist> getAllPlaylists();
 

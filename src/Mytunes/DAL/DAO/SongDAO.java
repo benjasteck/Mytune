@@ -45,13 +45,13 @@ public class SongDAO<list> {
         return allSongs;
     }
 
-    public int createSong (Song song) throws SQLException {
-
+    public Song createSong (Song song) throws SQLException {
+        int id = 0;
         String title = song.getTitle();
         String artist = song.getArtist();
-        String category = song.getCategory().toString();
+        String categoryString = song.getCategory().toString();
         int duration = song.getDuration();
-        String filepath = song.getFilePath();
+        String filePath = song.getFilePath();
 
         try (Connection connection = dbConnector.getConnection()) {
             String sql = "INSERT INTO Songs(TITLE, ARTIST, CATEGORY, DURATION, FILEPATH) OUTPUT inserted.ID VALUES (?, ?, ?, ?, ?)";
@@ -59,12 +59,20 @@ public class SongDAO<list> {
 
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, artist);
-            preparedStatement.setString(3, category);
+            preparedStatement.setString(3, categoryString);
             preparedStatement.setInt(4, duration);
-            preparedStatement.setString(5, filepath);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            return resultSet.getInt("ID");
+            preparedStatement.setString(5, filePath);
+            int created = preparedStatement.executeUpdate();
+            Category category = Category.valueOf(categoryString.trim());
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+            if (created != 0) {
+                song = new Song(id, title, artist, category, duration, filePath);
+            } else song = null;
+
+            return song;
         } catch (SQLException exception) {
             throw new SQLException(exception);
         }

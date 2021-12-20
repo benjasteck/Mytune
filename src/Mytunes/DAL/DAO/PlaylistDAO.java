@@ -58,10 +58,9 @@ public class PlaylistDAO {
         return allPlaylists;
     }
 
-    public Playlist getPlaylist(Playlist playList) throws SQLException {
-        int id = playList.getId();
-
+    public Playlist getPlaylist(int id) throws SQLException {
         String sql = "SELECT *  FROM playlists WHERE Id=?";
+        Playlist playlist = null;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -71,10 +70,10 @@ public class PlaylistDAO {
                 String name = resultSet.getString("Name");
                 int songs = resultSet.getInt(3);
                 String time = resultSet.getString(4);
-                playList = new Playlist(id, name, songs, time);
+                playlist = new Playlist(id, name, songs, time);
             }
         }
-        return playList;
+        return playlist;
     }
 
     public void updatePlaylist(Playlist playlist) throws SQLException {

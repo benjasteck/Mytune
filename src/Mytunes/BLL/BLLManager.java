@@ -1,11 +1,10 @@
 package Mytunes.BLL;
 
-import Mytunes.BE.Category;
 import Mytunes.BE.Playlist;
 import Mytunes.BE.Song;
 import Mytunes.DAL.DALManager;
-import Mytunes.DAL.IDALManager;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class BLLManager implements  IBLLManager{
@@ -17,13 +16,13 @@ public class BLLManager implements  IBLLManager{
     }
 
     @Override
-    public List<Song> getAllSongs() {
+    public List<Song> getAllSongs() throws SQLException {
        return dalManager.getAllSongs();
     }
 
     @Override
-    public Song createSong(String name, String artist, Category category, int time, String path) {
-        return dalManager.createSong(name,  artist,  category, time, path);
+    public Song createSong(Song song) throws SQLException {
+        return dalManager.createSong(song);
     }
 
     @Override

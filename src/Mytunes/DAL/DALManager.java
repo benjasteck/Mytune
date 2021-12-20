@@ -10,6 +10,7 @@ import Mytunes.DAL.database.DbConnector;
 import Mytunes.DAL.fakeDAO.Fake_PlaylistDAO;
 import Mytunes.DAL.fakeDAO.Fake_SongDAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class DALManager implements IDALManager {
@@ -36,15 +37,15 @@ public class DALManager implements IDALManager {
     }
 
     @Override
-    public List<Song> getAllSongs() {
-        //return songDAO.getAllSongs();
-        return fakeSongDAO.getAllSongs();
+    public List<Song> getAllSongs() throws SQLException {
+        return songDAO.getAllSongs();
     }
 
+
+
     @Override
-    public Song createSong(String name, String artist, Category category, int time, String path) {
-       // return songDAO.createSong(name,artist,category,time);
-        return fakeSongDAO.createSong(name,  artist,  category,  time, path);
+    public Song createSong(Song song) throws SQLException {
+       return songDAO.createSong(song);
     }
 
     @Override

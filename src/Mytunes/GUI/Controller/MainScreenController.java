@@ -1,7 +1,8 @@
 package Mytunes.GUI.Controller;
 
 import Mytunes.BE.Playlist;
-import Mytunes.be.Song;
+import Mytunes.BE.Song;
+import Mytunes.BE.Song;
 
 import Mytunes.GUI.Model.PlaylistModel;
 import Mytunes.GUI.Model.SongModel;
