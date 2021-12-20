@@ -1,7 +1,8 @@
 package Mytunes.GUI.Controller;
 
 import Mytunes.BE.Playlist;
-import Mytunes.BE.Song;
+import Mytunes.be.Song;
+
 import Mytunes.GUI.Model.PlaylistModel;
 import Mytunes.GUI.Model.SongModel;
 import javafx.collections.FXCollections;
@@ -103,7 +104,7 @@ public class MainScreenController implements Initializable {
         listViewSongs.getItems().addAll();
 
 
-        dataList.addAll(songModel.getAllSongs());
+        dataList.addAll((Song) songModel.getAllSongs());
 
         FilteredList<Song> filteredData = new FilteredList<>(dataList, b -> true);
 

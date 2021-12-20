@@ -33,7 +33,7 @@ public class SongPlaylistDAO {
     private int lastIdInThePlayList(int listid) throws SQLException {
         //todo get last value(incrementing id in database) in a playlist and return it
         int id = 0;
-        String sql = "SELECT FROM song_playlist where [Playlist id] = ?";
+        String sql = "SELECT id FROM song_playlist where [playlist id] = ? ORDER BY id ASC";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, listid);
@@ -48,7 +48,7 @@ public class SongPlaylistDAO {
 
     public void removeSongFromPlayList(int songid, int listid, int id) throws SQLException {
         //todo remove songs from playlist by using song id, playlist id and the value
-        String sql = "DELETE FROM song_playlist WHERE [Song id]=? AND [Playlist id]=? AND id= ?"; //will prob have to give value a new name in the db.
+        String sql = "DELETE FROM song_playlist WHERE [Song id]=? AND [Playlist id]=? AND id= ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, songid);
@@ -164,17 +164,17 @@ public class SongPlaylistDAO {
     }
 
     private int lastid(Mytunes.BE.Playlist playList) throws SQLException {
-        int rank = 0;
-        String sql = "SELECT Rank FROM song_playlist where [PlayList Id] = ? ORDER BY Rank ASC";
+        int id = 0;
+        String sql = "SELECT id FROM song_playlist where [playlist id] = ? ORDER BY id ASC";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, playList.getId());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
-                rank = resultSet.getInt("Rank");
+                id = resultSet.getInt("id");
             }
         }
-        return rank;
+        return id;
     }
 }

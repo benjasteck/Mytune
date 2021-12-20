@@ -21,10 +21,17 @@ public enum Category {
     Hiphop("Hiphop");
 
     private String name;
+    private int id;
 
-    Category(String name){
+    Category(String name, int id){
         this.name = name;
+        this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+    public int getId(){return id;}
 
     @Override
     public String toString(){

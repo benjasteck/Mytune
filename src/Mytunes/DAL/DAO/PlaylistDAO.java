@@ -81,4 +81,15 @@ public class PlaylistDAO {
         }
         return playList;
     }
+
+    public void updatePlaylist(int id, String name) throws SQLException {
+        String sql = "UPDATE playlist SET name=? WHERE id = ?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+
+        }
+    }
 }

@@ -11,7 +11,7 @@ public class DbConnector {
     public DbConnector(){
         dataSource = new SQLServerDataSource();
         dataSource.setServerName("10.176.111.31");
-        dataSource.setDatabaseName("CSe21B_4_2");
+        dataSource.setDatabaseName("CSe21B_4_3");
         dataSource.setUser("CSe21B_4");
         dataSource.setPassword("CSe21B_4");
         dataSource.setPortNumber(1433);

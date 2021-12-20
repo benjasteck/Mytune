@@ -2,7 +2,7 @@ package Mytunes.DAL;
 
 import Mytunes.BE.Category;
 import Mytunes.BE.Playlist;
-import Mytunes.BE.Song;
+import Mytunes.be.Song;
 
 import java.util.List;
 
