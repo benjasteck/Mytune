@@ -2,7 +2,8 @@ package Mytunes.DAL.DAO;
 
 import Mytunes.BE.Category;
 import Mytunes.DAL.Interfaces.ICategories;
-import Mytunes.be.Song;
+import Mytunes.DAL.database.DbConnector;
+import Mytunes.BE.Song;
 import jdk.internal.icu.impl.StringPrepDataReader;
 
 import java.io.File;
@@ -12,171 +13,100 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SongDAO<list> {
-    Connection con;
-    private StringPrepDataReader AudioFileIO;
-
-    public SongDAO(Connection con) {
-        this.con = con;
-
-    }
-
-
-    public List<Song> AllSongsList = new ArrayList<Song>(); // this List should contain ALL the songs ever created
+    private DbConnector dbConnector;
 
     public SongDAO() {
-
+        dbConnector = new DbConnector();
     }
 
-    public List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-        ArrayList<Song> allsongs = new ArrayList<>();
 
-        String sql = "SELECT * FROM Song;";
-        Statement statement = con.createStatement();
-        if (statement.execute(sql)) {
-            ResultSet resultSet = statement.getResultSet();
+    public List<Song> getAllSongs() throws SQLException {
+        ArrayList<Song> allSongs = new ArrayList<>();
+
+        try (Connection connection = dbConnector.getConnection()) {
+            String sql = "SELECT * FROM Songs";
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                int artistid = resultSet.getInt("artistid");
-                String artist = artistsDAO.getArtistById(artistid).getName();
-                String title = resultSet.getString("title");
-                int time = resultSet.getInt("time");
-                String filepath = resultSet.getString("filepath");
-                int categoryid = resultSet.getInt("categoryid");
-                //Category category = categoriesDAO.getCategoryById(categoryid).getCategoryName();
-
-                //Song song = new Song(id, title, artist, category, time, filepath);
-                //allsongs.add(song);
-
+                int id = resultSet.getInt("ID");
+                String title = resultSet.getString("TITLE");
+                String artist = resultSet.getString("ARTIST");
+                String categoryString = resultSet.getString("CATEGORY");
+                int duration = resultSet.getInt("DURATION");
+                String filePath = resultSet.getString("FILEPATH");
+                Category category = Category.valueOf(categoryString.trim());
+                Song song = new Song(id, title, artist, category, duration, filePath);
+                allSongs.add(song);
             }
+        } catch (SQLException exception) {
+            throw new SQLException(exception);        }
+        return allSongs;
+    }
+
+    public int createSong (Song song) throws SQLException {
+
+        String title = song.getTitle();
+        String artist = song.getArtist();
+        String category = song.getCategory().toString();
+        int duration = song.getDuration();
+        String filepath = song.getFilePath();
+
+        try (Connection connection = dbConnector.getConnection()) {
+            String sql = "INSERT INTO Songs(TITLE, ARTIST, CATEGORY, DURATION, FILEPATH) OUTPUT inserted.ID VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, title);
+            preparedStatement.setString(2, artist);
+            preparedStatement.setString(3, category);
+            preparedStatement.setInt(4, duration);
+            preparedStatement.setString(5, filepath);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt("ID");
+        } catch (SQLException exception) {
+            throw new SQLException(exception);
         }
-
-        return allsongs;
     }
 
-    public Song createSong(String title, String artist, Category category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-        //todo set all parameters here and and return a sung consisting of id, title, artist, category time and filepath
-        // it should not have the DAOs parametres
-        Song song;
-        int id = 0;
-        int artistid = artistsDAO.createArtist(artist);
-        int categoryid = categoriesDAO.createNewCategory(category);
-        String sql = ("INSERT INTO Song VALUES (?,?,?,?,?)");
-        PreparedStatement statement = con.prepareStatement(sql);
-        statement.setString(1, title);
-        statement.setInt(2, artistid);
-        statement.setInt(3, categoryid);
-        statement.setInt(4, getSongTime(Path.of(filePath)));
-        statement.setString(5, filePath);
-        int created = statement.executeUpdate();
-        ResultSet resultSet = statement.getGeneratedKeys();
-        if (resultSet.next()) {
-            id = resultSet.getInt(1);
-        }
-        if (created != 0) {
-            song = new Song(id, title, artist, category, getSongTime(Path.of(filePath)), filePath);
-        } else song = null;
+    public void updateSong (Song song) throws SQLException{
 
-        return song;
-    }
+        int id = song.getId();
+        String title = song.getTitle();
+        String artist = song.getArtist();
+        String genre = song.getCategory().toString();
+        int time = song.getDuration();
+        String source = song.getFilePath();
 
-
-    public void deleteSong(int id, SongPlaylistDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-        //todo delete the song by id
-        String sql = "DELETE FROM Song WHERE id = ?";
-        //delete artist if he only has one song that was deleted
-        if (artistsDAO.artistOccurrences(songArtistId(id)) > 1) {
-        } else artistsDAO.deleteArtist(songArtistId(id));
-        //delete category if it only belongs to one song that was deleted
-        if (categoriesDAO.categoryOccurrences(id) > 1) {
-        } else categoriesDAO.deleteCategory(id);
-        //delete song from all playlists
-        song_playListDAO.deleteFromAllPlayLists(id);
-        PreparedStatement preparedStatement = con.prepareStatement(sql);
-        preparedStatement.setInt(1, id);
-        preparedStatement.executeUpdate();
-    }
-
-    public void updateSong(String title, int id, String artist, String category, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-        //todo set new parameters and execute them.
-        artistsDAO.updateArtist(songArtistId(id), artist);
-        categoriesDAO.updateCategory(songCategoryId(id), category);
-        String sql = "UPDATE Song SET title = ?,artistid = ?, categoryid= ? WHERE id=? ";
-
-        PreparedStatement statement = con.prepareStatement(sql);
-        statement.setString(1, title);
-        statement.setString(2, artist);
-        statement.setString(3, category);
-        statement.setInt(4, id);
-        statement.executeUpdate();
-
-    }
-
-    public int getSongTime(Path filePath) {
-        //todo get the time of the song using filepath and implement it
-        File file = new File("filename.mp3");
-        //AudioFileFormat baseFileFormat = new MpegAudioFileReader().getAudioFileFormat(file);
-        //Map properties = baseFileFormat.properties();
-        //int duration = (int) properties.get("duration");
-        //return duration;
-        return 0;
-
-    }
-
-    private int songArtistId(int id) throws SQLException {
-        //todo get songs artist id and return it.
-        int artistid = 0;
-        String sql = "SELECT FROM Song WHERE id = ?";
-        PreparedStatement preparedStatement = con.prepareStatement(sql);
-        preparedStatement.setInt(1, id);
-        preparedStatement.execute();
-        ResultSet resultSet = preparedStatement.getResultSet();
-        while (resultSet.next()) {
-            artistid = resultSet.getInt("artistid");
-        }
-
-        return artistid;
-    }
-
-    private int songCategoryId(int id) throws SQLException {
-        //todo get song category id and return it
-        int songCategoryid = 0;
-        String sql = "SELECT FROM Song WHERE id = ?";
-
-        PreparedStatement preparedStatement = con.prepareStatement(sql);
-        preparedStatement.setInt(1, id);
-        preparedStatement.execute();
-        ResultSet resultSet = preparedStatement.getResultSet();
-        while (resultSet.next()) {
-            songCategoryid = resultSet.getInt("categoryid");
-        }
-
-        return songCategoryid;
-
-    }
-
-    public Song getSongById(int id) throws SQLException {
-        Song song = null;
-        String sql = "SELECT *  FROM Song WHERE id=?";
-
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+        try (Connection connection = dbConnector.getConnection()) {
+            String sql = "UPDATE Songs SET TITLE = ?, ARTIST = ?, GENRE = ?, TIME = ?, SOURCE = ? WHERE ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, title);
+            preparedStatement.setString(2, artist);
+            preparedStatement.setString(3, genre);
+            preparedStatement.setInt(4, time);
+            preparedStatement.setString(5, source);
+            preparedStatement.setInt(6, id);
             preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            if (resultSet.next()) {
-                String title = resultSet.getString("Title");
-                int artistid = resultSet.getInt("Artist");
-                ArtistsDAO artistsDAO = null;
-                String artist = artistsDAO.getArtistById(artistid).getName();
-                int categoryid = resultSet.getInt("Category");
-                String time = resultSet.getString("Time");
-                String path = resultSet.getString("Path");
-                ICategories categoriesDAO = null;
-                song = new Song(id, title, artist, categoriesDAO.getCategoryById(categoryid).getCategoryName(), time, path);
-
-            }
-        return song;
-
+        } catch (SQLException exception) {
+            throw new SQLException();
+        }
     }
 
+    public void deleteSong(Song song) throws SQLException{
+        try (Connection connection = dbConnector.getConnection()) {
+            String sqlPlaylists = "DELETE FROM SongsOnPlaylist WHERE SongID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlPlaylists);
+            preparedStatement.setInt(1, song.getId());
+            preparedStatement.execute();
+            String sqlSong = "DELETE FROM Songs WHERE ID = ?";
 
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sqlSong);
+            preparedStatement2.setInt(1, song.getId());
+            preparedStatement2.execute();
+        } catch (SQLException exception) {
+            throw new SQLException(exception);
+        }
+    }
 }

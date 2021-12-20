@@ -1,6 +1,7 @@
-package Mytunes.be;
+package Mytunes.BE;
 
 
+import Mytunes.BE.Category;
 
 public class Song {
     public int id;
@@ -8,7 +9,6 @@ public class Song {
     private String artist;
     private Category category;
     private String filePath;
-
     private Integer seconds;
 
     public Song(int id, String title, String artist, Category category, Integer duration, String filePath){
@@ -19,12 +19,6 @@ public class Song {
         this.category = category;
         this.filePath = filePath;
     }
-
-    public Song() {
-
-    }
-
-
 
 
     public int getMinute() {

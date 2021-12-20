@@ -1,5 +1,6 @@
 package Mytunes.DAL.DAO;
 
+import Mytunes.BE.Playlist;
 import Mytunes.BLL.old.PlayListBLL;
 import Mytunes.DAL.database.DbConnector;
 
@@ -15,25 +16,20 @@ public class PlaylistDAO {
     }
 
 
-    public PlayListBLL createPlayList(String name) throws SQLException {
-        //todo return name and id of a playlist
-        PlayListBLL playlist = null;
-        String sql = "INSERT INTO playlists VALUES (?) ";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            preparedStatement.executeUpdate();
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                playlist = new PlayListBLL(id, name);
-            }
-        }
-        return playlist;
+    public int createPlaylist(Playlist playlist) throws SQLException{
+        String name = playlist.getName();
+        try(Connection connection = databaseConnector.getConnection()){
+            String sql = "INSERT INTO Playlists(NAME) OUTPUT inserted.ID VALUES (?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt("ID");
+        } catch (SQLException exception){
+            throw new SQLException(exception);}
     }
 
     public void deletePlaylist(String name) throws SQLException {
-        //todo delete a playlist by name.
         String sql = "DELETE FROM playlists WHERE name =?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -42,11 +38,9 @@ public class PlaylistDAO {
         }
     }
 
-    public List<PlayListBLL> getAllPlaylists() throws SQLException {
-
-        ArrayList<PlayListBLL> allPlaylists = new ArrayList<>();
+    public List<Playlist> getAllPlaylists() throws SQLException {
+        ArrayList<Playlist> allPlaylists = new ArrayList<>();
         try (Connection connection = databaseConnector.getConnection()) {
-
             String sql = "SELECT * FROM Playlist;";
             Statement statement = connection.createStatement();
             if (statement.execute(sql)) {
@@ -55,7 +49,7 @@ public class PlaylistDAO {
                     int id = resultSet.getInt("id");
                     String name = resultSet.getString("name");
 
-                    PlayListBLL playList = new PlayListBLL(id, name);
+                    Playlist playList = new Playlist(id, name);
                     allPlaylists.add(playList);
 
                 }
@@ -64,8 +58,9 @@ public class PlaylistDAO {
         return allPlaylists;
     }
 
-    public Mytunes.BE.Playlist getPlaylist(int id) throws SQLException {
-        Mytunes.BE.Playlist playList = null;
+    public Playlist getPlaylist(Playlist playList) throws SQLException {
+        int id = playList.getId();
+
         String sql = "SELECT *  FROM playlists WHERE Id=?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -76,13 +71,15 @@ public class PlaylistDAO {
                 String name = resultSet.getString("Name");
                 int songs = resultSet.getInt(3);
                 String time = resultSet.getString(4);
-                playList = new Mytunes.BE.Playlist(id, name, songs, time);
+                playList = new Playlist(id, name, songs, time);
             }
         }
         return playList;
     }
 
-    public void updatePlaylist(int id, String name) throws SQLException {
+    public void updatePlaylist(Playlist playlist) throws SQLException {
+        int id = playlist.getId();
+        String name = playlist.getName();
         String sql = "UPDATE playlist SET name=? WHERE id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

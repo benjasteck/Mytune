@@ -1,6 +1,5 @@
 package Mytunes.BE;
-
-import Mytunes.be.Song;
+import Mytunes.BE.Song;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +30,6 @@ public class Playlist {
     public void setName(String name) {
         this.name = name;
     }
-
-    public int getid(){return id;}
 
     public int getsongs(){return songs;}
     public void setsongs(int songs){this.songs = songs;}
