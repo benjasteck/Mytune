@@ -16,7 +16,7 @@ public class PlaylistDAO {
 
 
     public PlayListBLL createPlayList(String name) throws SQLException {
-       //todo return name and id of a playlist
+        //todo return name and id of a playlist
         PlayListBLL playlist = null;
         String sql = "INSERT INTO playlists VALUES (?) ";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -32,8 +32,8 @@ public class PlaylistDAO {
         return playlist;
     }
 
-    public void deletePlaylist(String name) throws SQLException{
-    //todo delete a playlist by name.
+    public void deletePlaylist(String name) throws SQLException {
+        //todo delete a playlist by name.
         String sql = "DELETE FROM playlists WHERE name =?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -42,18 +42,16 @@ public class PlaylistDAO {
         }
     }
 
-    public List<PlayListBLL> getAllPlaylists() throws SQLException{
+    public List<PlayListBLL> getAllPlaylists() throws SQLException {
 
         ArrayList<PlayListBLL> allPlaylists = new ArrayList<>();
         try (Connection connection = databaseConnector.getConnection()) {
 
             String sql = "SELECT * FROM Playlist;";
             Statement statement = connection.createStatement();
-            if(statement.execute(sql))
-            {
+            if (statement.execute(sql)) {
                 ResultSet resultSet = statement.getResultSet();
-                while (resultSet.next())
-                {
+                while (resultSet.next()) {
                     int id = resultSet.getInt("id");
                     String name = resultSet.getString("name");
 
@@ -64,5 +62,23 @@ public class PlaylistDAO {
             }
         }
         return allPlaylists;
+    }
+
+    public Mytunes.BE.Playlist getPlaylist(int id) throws SQLException {
+        Mytunes.BE.Playlist playList = null;
+        String sql = "SELECT *  FROM playlists WHERE Id=?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            if (resultSet.next()) {
+                String name = resultSet.getString("Name");
+                int songs = resultSet.getInt(3);
+                String time = resultSet.getString(4);
+                playList = new Mytunes.BE.Playlist(id, name, songs, time);
+            }
+        }
+        return playList;
     }
 }

@@ -1,5 +1,7 @@
 package Mytunes.BE;
 
+import Mytunes.be.Song;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,9 @@ public class Playlist {
         this.id = id;
         this.name = name;
         this.songList = new ArrayList<Song>();
+    }
+
+    public Playlist(int id, String name, int songs, String time) {
     }
 
     public List<Song> getSongList() {
@@ -64,5 +69,8 @@ public class Playlist {
     @Override
     public String toString(){
         return String.format("Name of the playlist: " + getName() + "list of songs: " + getSongList());
+    }
+    public int getId() {
+        return id;
     }
 }

@@ -41,6 +41,9 @@ public class MainScreenController implements Initializable {
     private Button buttonForward;
 
     @FXML
+    private Button filterBtn;
+
+    @FXML
     private Button buttonPlayPause;
 
     @FXML
@@ -106,19 +109,19 @@ public class MainScreenController implements Initializable {
 
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(song1 -> {
-                // If filter text is empty, display all persons.
+                // If filter text is empty, display all song.
 
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
-                // Compare first name and last name of every person with filter text.
+                // Compare title and artist of every song with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (song1.getArtist().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches first name.
+                    return true; // Filter artist.
                 } else if (song1.getTitle().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
+                    return true; // Filter matches title.
                 }
                 else
                     return false; // Does not match.
@@ -126,9 +129,8 @@ public class MainScreenController implements Initializable {
         });
 
         SortedList<Song> sortedData = new SortedList<>(filteredData);
-
         sortedData.comparatorProperty().bind(tableViewSongs.comparatorProperty());
-
+        //show the new list of filtered songs
         tableViewSongs.setItems(sortedData);
     }
 
@@ -288,6 +290,11 @@ public class MainScreenController implements Initializable {
         tableColumnSongs.setCellValueFactory(new PropertyValueFactory<>("numberOfSongs"));
         tableColumnTimeP.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
         tableViewPlaylist.setItems(playlistModel.getAllPlaylists());
+    }
+
+    public void searchClearFilterbtn(ActionEvent actionEvent) {
+        filterField.clear();
+        filterBtn.setText("Search");
     }
 }
 

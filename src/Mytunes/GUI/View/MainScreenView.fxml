@@ -127,7 +127,7 @@
                </font>
             </Label>
             <TextField fx:id="filterField" />
-            <Button mnemonicParsing="false" text="Find">
+            <Button fx:id="filterBtn" mnemonicParsing="false" onAction="#searchClearFilterbtn" text="Find">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>

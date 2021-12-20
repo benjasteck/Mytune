@@ -1,4 +1,4 @@
-package Mytunes.BE;
+package Mytunes.be;
 
 
 
@@ -19,6 +19,12 @@ public class Song {
         this.category = category;
         this.filePath = filePath;
     }
+
+    public Song() {
+
+    }
+
+
 
 
     public int getMinute() {
